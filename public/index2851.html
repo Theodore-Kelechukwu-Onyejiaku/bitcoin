@@ -1,0 +1,226 @@
+<html>
+
+<!-- Mirrored from bx-miners.uk/?a=cust&page=privacy by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 24 Aug 2020 01:03:04 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+	<title>BX-Miners LTD</title>
+	<link href='styles/assets/custom.css' rel='stylesheet' type='text/css'>
+	<link href='styles/assets/hover.css' rel='stylesheet' type='text/css'>
+	<link href='styles/assets/animate.css' rel='stylesheet' type='text/css'>
+	<script src="../ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+	<link rel="stylesheet" href="../maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+	<link rel="icon" href="styles/assets/images/favicon.png" type="image/png"/>
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700" rel="stylesheet">
+	<link href='styles/assets/bootstrap.min.css' rel='stylesheet' type='text/css'>
+	<link href='styles/assets/custom_back.css' rel='stylesheet' type='text/css'>
+	<script src='styles/assets/jquery.js' type='text/javascript'></script>
+	<script src="styles/assets/wow.js"></script>
+	<script src="styles/assets/wow.min.js"></script>
+	<script type="text/javascript" src="styles/assets/bootstrap.min.js"></script>
+	<script src='styles/assets/setting.js' type='text/javascript'></script>
+
+
+	<script type="text/javascript">
+	//// Get the CryptoCurrency Information from the API
+	jQuery.ajax({
+		url: "https://min-api.cryptocompare.com/data/pricemulti",
+		data: "fsyms=BTC,ETH,DASH,LTC&tsyms=USD",
+		dataType : 'json',
+	}).done(function(data) {
+		// console.log( "BTC : " + data.BTC.USD + ", ETH : " + data.ETH.USD + ", DASH : " + data.DASH.USD, LTC : " + data.LTC.USD);
+		jQuery(".dashCoin").html('$' + data.DASH.USD);
+		jQuery(".ethCoin").html('$' + data.ETH.USD);
+		jQuery(".bitCoin").html('$' + data.BTC.USD);
+		jQuery(".liteCoin").html('$' + data.LTC.USD);
+	}).fail(function() {
+		console.log( "API error" );
+	});
+</script>
+
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$(".cal2").click(function() {
+			$(".calculate_ctn").toggle();
+			$(".calculate_ctn").addClass("animated lightSpeedIn");
+		});
+	});
+</script>
+
+
+
+<script type="text/javascript">
+	var tday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
+	var tmonth=new Array("January","February","March","April","May","June","July","August","September","October","November","December");
+
+	function GetClock(){
+		var tzOffset = -5;//set this to the number of hours offset from UTC
+
+		var d=new Date();
+		var dx=d.toGMTString();
+		dx=dx.substr(0,dx.length -3);
+		d.setTime(Date.parse(dx))
+		d.setHours(d.getHours()+tzOffset);
+		var nday=d.getDay(),nmonth=d.getMonth(),ndate=d.getDate();
+		var nhour=d.getHours(),nmin=d.getMinutes(),ap;
+		if(nhour==0){ap=" AM";nhour=12;}
+		else if(nhour<12){ap=" AM";}
+		else if(nhour==12){ap=" PM";}
+		else if(nhour>12){ap=" PM";nhour-=12;}
+
+		if(nmin<=9) nmin="0"+nmin;
+
+		document.getElementById('clockbox').innerHTML=""+tday[nday]+", "+tmonth[nmonth]+" "+ndate+" "+nhour+":"+nmin+ap+"";
+	}
+
+	window.onload=function(){
+		GetClock();
+		setInterval(GetClock,1000);
+	}
+</script>
+
+
+
+
+
+
+
+</head>
+
+<div class="headerContainer">
+	<div class="headerInner fadeInLeft wow"> <a href="indexbc14.html?a=home" id="logo"></a>
+		<p>1 BTC: <span class="bitCoin"></span></p>
+		<div class="hdRight">
+			<div class="mainNavRight">
+				<div class="navbar">
+					<div class="navbar-inner">
+						<ul class="nav">
+							<li><a href="indexbc14.html?a=home">Home</a></li>
+							<li><a href="indexe47e.html?a=about">About</a></li>
+							<li><a href="index38cd.html?a=faq">FAQ </a></li>
+							<li><a href="index9d6a.html?a=cust&amp;page=investment">PLANS</a></li>
+							<li><a href="index15a0.html?a=support">SUPPORT</a></li>
+							<li><a href="indexbc14.html?a=home">PAID</a></li>
+														<li><a href="indexc30b.html?a=login" class="login">login</a></li>
+							<li><a href="indexcca3.html?a=signup" class="signup">signup</a></li>						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<body>
+
+	
+
+
+
+<div class="subpage-title">
+	<div class="subpage-inner-title container">
+		
+		
+		Privacy Policy
+		
+	</div>
+</div>
+
+
+<div class="subpage-container container"> 
+
+<p align=justify> 
+
+<h1> Legal Issues </h1>
+
+Terms & Conditions of Service as set forth herein shall govern the relationship between the Participant and the Fund and are effective immediately after the Participant has made a deposit with the online investment program provided by the Fund, and shall be valid till the deposit term expires.<br><br>
+
+The Participant must be of legal age in his country of residence to be able to create an account with the BX-Miners online investment program, and in all the cases the Participant's minimal age must be 18 years. <br><br>
+
+The investment scheme and the participation in it may be restricted or limited in different jurisdictions. It is understood that it is the responsibility of the Participant to get aware of and to comply with all the legal provisions and regulations in force in his country of residence with respect to the investment practices and procedures, exchange controls, taxes and related matters. <br><br>
+
+BX-Miners does not offer advices on the suitability of the BX-Miners's services for the Participant's individual needs, nor does BX-Miners provides for any judgment on the Participant's behalf, relating to government or tax regulations in particular. It is the responsibility of the Investor to take independent assessment as to the suitability of said investment scheme for the Participant's particular circumstances. No information on the BX-Miners's web site is to be considered as a solicitation or an offer to participate in investment schemes the BX-Miners provides.<br><br>
+
+Every deposit is considered to be a private transaction between BX-Miners and the Participant. As a private transaction, this program is exempt from the US Securities Act of 1933, the US Securities Exchange Act of 1934 and the US Investment Company Act of 1940 and all other rules, regulations and amendments thereof.  <br><br> 
+
+
+<h1> Deposits </h1> 
+
+Deposits are accepted and paid through BitCoin payment systems. BX-Miners may consider accepting funds via other payment methods and/or e-currencies when appropriate. <br><br>
+
+Minimum deposit amount is $10.00 and $10,000 is the maximum deposit amount the Participant can allocate with BX-Miners during one day. There is no limit as per the number of deposits the Participant can make as long as maximum daily limit is not exceeded. <br><br>
+
+Deposits shall begin to earn interest the next business day after they have been placed.<br><br>
+
+The Participant is provided with a fixed daily interest or return at the rate that depends on the amount of deposit and particular invesment plan terms. Interests and returns are credited to the Investor's account balance daily Monday to Friday, or lumpsum at maturity, depending on investment plan chosen.<br><br>
+
+The principal amount of deposit is locked in during the whole investment period and can only be withdrawn after the term completion unless included into daily payments. It is credited to the Participant's account balance at the date of maturity, and is available for disposal anytime thereafter.<br><br>
+
+The funds available at the Participant's account balance bear no interest and are available for withdrawal, or can be deposited again at the Participant's discretion.<br><br>  
+
+<h1> Withdrawals </h1> 
+
+Withdrawals are processed on business days - Monday to Friday directly to the Participant's e-currency account within 24 hours after withdrawal request has been submitted. Large withdrawals of interest and principal may take up to 2 business days to process subject to availability of correspondent e-currency reserves.<br><br>
+
+All interest payments and principal withdrawals shall be paid tax- free at source. The Participant understands and agrees that it is his sole responsibility to comply with any laws or regulations regarding the establishment of an account or any interest and withdrawal paid thereon in the Participant's jurisdiction.<br><br>
+
+<h1> Anti-Spam policy </h1> 
+
+BX-Miners strictly prohibits sending unsolicited mass e-mails of any kind. Use of spam will not be tolerated and BX-Miners will terminate an account of any Participant who is caught at sending unsolicited advertising messages that harm BX-Miners's reputation. <br><br>
+
+BX-Miners collects, retains and uses information about the Participant only for technical and administrative purposes. All collected data will be kept private and will not be exposed to any third parties without the permission of the Participant unless a legal court order is presented.<br><br>
+
+The Participant agrees to keep all information about his relations with BX-Miners including transaction details, private correspondence, newsletters private and not to expose it on public.<br><br> 
+
+<h1> Disclaimer </h1> 
+
+BX-Miners will not be liable for any losses arising from delay in the transmission of funds due to causes beyond its control. BX-Miners will not be held responsible for any losses or damages occurring as a result of military force, political intervention, the prescriptions of domestic or foreign authorities or events occurring as a result of catastrophe or Act of God. <br><br> 
+
+BX-Miners will not be liable for any losses arising from failure of the Participant to hold his computer systems free from malicious software used by third parties to get unauthorized access to Participant's account. It is Participant's sole responsibility to check his system for trojans , key loggers and other malware. <br><br> 
+
+The Participant agrees to hold BX-Miners harmless of any liability regarding possible loss of Participant's funds during investment process. The Participant understands that he is investing at his own risk and that past BX-Miners performance is not an explicit guarantee for the same future results. <br><br>  
+<br><br>  
+<b>
+ By creating an account with BX-Miners online investment platform you agree to be bound by the Terms and Conditions above. If you don't agree, please, do not go any further.</b> 
+
+
+
+</div>
+<div class="solidContainer">
+  <div class="solidInner zoomIn wow">
+    <div class="solid"> <a href="#" class="solid1"></a> <a href="#" class="solid2"></a> <a href="#" class="solid3"></a> <a href="#" class="solid4"></a> <a href="#" class="solid5"></a> <a href="#" class="solid6"></a> <a href="#" class="solid7"></a> <a href="#" class="solid8"></a> </div>
+  </div>
+</div>
+<div class="footerContainer">
+  <div class="footerInner">
+    <div class="ft-row1">
+      <h3>&copy; <script type="text/javascript">document.write( new Date().getFullYear() );</script>. <a href="indexbc14.html?a=home">BX-Miners</a> ALL RIGHTS RESERVED</h3>
+    </div>
+    <div class="ft-part1"> <a href="indexe47e.html?a=about">ABOUT US</a> <a href="index56ca.html?a=news">NEWS</a> <a href="index38cd.html?a=faq">FAQ</a> <a href="index15a0.html?a=support">support</a> <a href="index2851.html?a=cust&amp;page=privacy">terms</a><a href="indexa972.html?a=rules">rules</a></div>
+  </div>
+</div>
+
+
+
+<div style="position:fixed; bottom:0px; right:0px;">
+
+
+</div>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5e90fce335bcbb0c9aafdbe8/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+</body>
+
+<!-- Mirrored from bx-miners.uk/?a=cust&page=privacy by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 24 Aug 2020 01:03:09 GMT -->
+</html>
+
+

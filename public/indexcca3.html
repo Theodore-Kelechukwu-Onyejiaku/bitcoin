@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from bx-miners.uk/?a=signup by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 24 Aug 2020 01:03:04 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>BX-Miners LTD</title>
+    <link rel="shortcut icon" href="styles/assets/images/favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700" rel="stylesheet">
+    <link href='styles/assets/bootstrap.min.css' rel='stylesheet' type='text/css'>
+    <link href='styles/assets/animate.css' rel='stylesheet' type='text/css'>
+    <link href='styles/assets/custom_back.css' rel='stylesheet' type='text/css'>
+    <script src='styles/assets/jquery.js' type='text/javascript'></script>
+    <script src="styles/assets/wow.js"></script>
+    <script src="styles/assets/wow.min.js"></script>
+    <script type="text/javascript" src="styles/assets/bootstrap.min.js"></script>
+    <script src='styles/assets/setting.js' type='text/javascript'></script>
+    <script type="text/javascript">
+        //// Get the CryptoCurrency Information from the API
+        jQuery.ajax({
+            url: "https://min-api.cryptocompare.com/data/pricemulti",
+            data: "fsyms=BTC,ETH,DASH,LTC&tsyms=USD",
+            dataType: 'json',
+        }).done(function(data) {
+            // console.log( "BTC : " + data.BTC.USD + ", ETH : " + data.ETH.USD + ", DASH : " + data.DASH.USD, LTC : " + data.LTC.USD);
+            jQuery(".dashCoin").html('$' + data.DASH.USD);
+            jQuery(".ethCoin").html('$' + data.ETH.USD);
+            jQuery(".bitCoin").html('$' + data.BTC.USD);
+            jQuery(".liteCoin").html('$' + data.LTC.USD);
+        }).fail(function() {
+            console.log("API error");
+        });
+
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="headerContainer">
+            <div class="headerInner fadeInLeft wow">
+                <a href="indexbc14.html?a=home" id="logo"></a>
+                <p>1 BTC: <span class="bitCoin"></span>
+                </p>
+                <div class="hdRight">
+                    <div class="mainNavRight">
+                        <div class="navbar">
+                            <div class="navbar-inner">
+                                <ul class="nav">
+                                    <li><a href="indexbc14.html?a=home">Home</a></li>
+                                    <li><a href="indexe47e.html?a=about">About</a></li>
+                                    <li><a href="index38cd.html?a=faq">FAQ </a></li>
+                                    <li><a href="index9d6a.html?a=cust&amp;page=investment">PLANS</a></li>
+                                    <li><a href="index058e.html?a=affiliate">AFFILIATES</a></li>
+                                    <li><a href="index15a0.html?a=support">SUPPORT</a></li>
+                                    <li><a href="indexbc14.html?a=home">PAID</a></li>
+                                                                        <li><a href="indexc30b.html?a=login" class="login">login</a></li>
+                                    <li><a href="indexcca3.html?a=signup" class="signup">signup</a></li>                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bannerContainer">
+            <div class="bannerInner insideheader fadeInRight wow">
+                <div class="ctn-banner">
+                    <h3><span>Open New Account</span></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <body class="loginarea">
+        <div class="signuppage">
+            <div class="becomeInner">
+                <div class="loginwrappers">
+                    <div class="form-container signup">
+                                                
+
+                        <script language=javascript>
+                            function checkform() {
+                                if (document.regform.fullname.value == '') {
+                                    alert("Please enter your full name!");
+                                    document.regform.fullname.focus();
+                                    return false;
+                                } {
+                                    /literal} {
+                                    if $settings.use_user_location == 1
+                                } {
+                                    literal
+                                }
+                                if (document.regform.address.value == '') {
+                                    alert("Please enter your address!");
+                                    document.regform.address.focus();
+                                    return false;
+                                }
+                                if (document.regform.city.value == '') {
+                                    alert("Please enter your city!");
+                                    document.regform.city.focus();
+                                    return false;
+                                }
+                                if (document.regform.state.value == '') {
+                                    alert("Please enter your state!");
+                                    document.regform.state.focus();
+                                    return false;
+                                }
+                                if (document.regform.zip.value == '') {
+                                    alert("Please enter your ZIP!");
+                                    document.regform.zip.focus();
+                                    return false;
+                                }
+                                if (document.regform.country.options[document.regform.country.selectedIndex].text == '--SELECT--') {
+                                    alert("Please choose your country!");
+                                    document.regform.country.focus();
+                                    return false;
+                                } {
+                                    /literal} { /
+                                    if
+                                } {
+                                    literal
+                                }
+                                if (document.regform.username.value == '') {
+                                    alert("Please enter your username!");
+                                    document.regform.username.focus();
+                                    return false;
+                                }
+                                if (!document.regform.username.value.match(/^[A-Za-z0-9_\-]+$/)) {
+                                    alert("For username you should use English letters and digits only!");
+                                    document.regform.username.focus();
+                                    return false;
+                                }
+                                if (document.regform.password.value == '') {
+                                    alert("Please enter your password!");
+                                    document.regform.password.focus();
+                                    return false;
+                                }
+                                if (document.regform.password.value != document.regform.password2.value) {
+                                    alert("Please check your password!");
+                                    document.regform.password2.focus();
+                                    return false;
+                                } {
+                                    /literal} {
+                                    if $settings.use_transaction_code
+                                } {
+                                    literal
+                                }
+                                if (document.regform.transaction_code.value == '') {
+                                    alert("Please enter your transaction code!");
+                                    document.regform.transaction_code.focus();
+                                    return false;
+                                }
+                                if (document.regform.transaction_code.value != document.regform.transaction_code2.value) {
+                                    alert("Please check your transaction code!");
+                                    document.regform.transaction_code2.focus();
+                                    return false;
+                                } {
+                                    /literal} { /
+                                    if
+                                } {
+                                    literal
+                                }
+                                if (document.regform.email.value == '') {
+                                    alert("Please enter your e-mail address!");
+                                    document.regform.email.focus();
+                                    return false;
+                                }
+                                if (document.regform.email.value != document.regform.email1.value) {
+                                    alert("Please retupe your e-mail!");
+                                    document.regform.email.focus();
+                                    return false;
+                                }
+
+                                for (i in document.regform.elements) {
+                                    f = document.regform.elements[i];
+                                    if (f.name && f.name.match(/^pay_account/)) {
+                                        if (f.value == '') continue;
+                                        var notice = f.getAttribute('data-validate-notice');
+                                        var invalid = 0;
+                                        if (f.getAttribute('data-validate') == 'regexp') {
+                                            var re = new RegExp(f.getAttribute('data-validate-regexp'));
+                                            if (!f.value.match(re)) {
+                                                invalid = 1;
+                                            }
+                                        } else if (f.getAttribute('data-validate') == 'email') {
+                                            var re = /^[^\@]+\@[^\@]+\.\w{2,4}$/;
+                                            if (!f.value.match(re)) {
+                                                invalid = 1;
+                                            }
+                                        }
+                                        if (invalid) {
+                                            alert('Invalid account format. Expected ' + notice);
+                                            f.focus();
+                                            return false;
+                                        }
+                                    }
+                                }
+
+                                if (document.regform.agree.checked == false) {
+                                    alert("You have to agree with the Terms and Conditions!");
+                                    return false;
+                                }
+
+                                return true;
+                            }
+
+                            function IsNumeric(sText) {
+                                var ValidChars = "0123456789";
+                                var IsNumber = true;
+                                var Char;
+                                if (sText == '') return false;
+                                for (i = 0; i < sText.length && IsNumber == true; i++) {
+                                    Char = sText.charAt(i);
+                                    if (ValidChars.indexOf(Char) == -1) {
+                                        IsNumber = false;
+                                    }
+                                }
+                                return IsNumber;
+                            }
+
+                        </script>
+                        
+
+                                                
+
+                        <form method=post onsubmit="return checkform()" name="regform"><input type="hidden" name="form_id" value="15982309136168"><input type="hidden" name="form_token" value="9cc52a51bab34aeba7fda121efe95717">
+                            <input type=hidden name=a value="signup">
+                            <input type=hidden name=action value="signup">
+                            <div style="width:48%; float:left">
+                                <table width="100%" border=0 cellspacing=0>
+                                    <tr>
+                                        <td width="100%">
+                                            <label>Your Full Name</label>
+                                            <input placeholder="" type=text name=fullname value="" class=inpts size=30>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>Your Username</label>
+                                            <input placeholder="" type=text name=username value="" class=inpts size=30>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>Your E-mail</label>
+                                            <input placeholder="" type=text name=email value="" class=inpts size=30>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>Retype E-mail</label>
+                                            <input placeholder="" type=text name=email1 value="" class=inpts size=30>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>Secret Question</label>
+                                            <input placeholder="" type=text name=sq value="" class=inpts size=30>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>Secret Answer</label>
+                                            <input placeholder="" type=text name=sa value="" class=inpts size=30>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>Define Password</label>
+                                            <input placeholder="" type=password name=password value="" class=inpts size=30>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>Retype Password</label>
+                                            <input placeholder="" type=password name=password2 value="" class=inpts size=30>
+                                        </td>
+                                    </tr>
+                                   
+                                                                                                        </table>
+                            </div>
+                            
+                            <div style="width:48%; float:right">
+                                <table width="100%" border=0 cellspacing=0>
+                                    <tr>
+                                        <td>
+                                            <label>Your PerfectMoney Account</label>
+                                            <input type=text class=inpts size=30 name=pay_account[18] value="" data-validate="regexp" data-validate-regexp="^U\d{5,}$" data-validate-notice="UXXXXXXX" placeholder="___Optional___">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>Your Payeer Account</label>
+                                            <input type=text class=inpts size=30 name=pay_account[43] value="" data-validate="regexp" data-validate-regexp="^P\d{5,}$" data-validate-notice="PXXXXXXX" placeholder="___Optional___">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>Your Bitcoin Account</label>
+                                            <input type=text class=inpts size=30 name=pay_account[48] value="" data-validate="regexp" data-validate-regexp="^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$" data-validate-notice="Bitcoin Address" placeholder="1YourBitcoinAddressmwGAiHnxQWP8J2">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>Your Litecoin Account</label>
+                                            <input type=text class=inpts size=30 name=pay_account[68] value="" data-validate="regexp" data-validate-regexp="^[LM3][a-km-zA-HJ-NP-Z1-9]{25,34}$" data-validate-notice="Litecoin Address" placeholder="___Optional___">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>Your Dogecoin Account</label>
+                                            <input type=text class=inpts size=30 name=pay_account[79] value="" data-validate="regexp" data-validate-regexp="^[DA9][a-km-zA-HJ-NP-Z1-9]{25,34}$" data-validate-notice="Dogecoin Address" placeholder="___Optional___">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>Your Ethereum Account</label>
+                                            <input type=text class=inpts size=30 name=pay_account[69] value="" data-validate="regexp" data-validate-regexp="^(0x)?[0-9a-fA-F]{40}$" data-validate-notice="Ethereum Address" placeholder="___Optional___">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>Your Bitcoin Cash Account</label>
+                                            <input type=text class=inpts size=30 name=pay_account[77] value="" data-validate="regexp" data-validate-regexp="^[\w\d]{25,43}$" data-validate-notice="Bitcoin Cash Address" placeholder="___Optional___">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>Your Dash Account</label>
+                                            <input type=text class=inpts size=30 name=pay_account[71] value="" data-validate="regexp" data-validate-regexp="^X[0-9a-zA-Z]{33}$" data-validate-notice="Dash Address" placeholder="___Optional___">
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td colspan=2>
+                                            <input type=checkbox name=agree value=1>I agree with <a href="indexa972.html?a=rules">Terms and conditions</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type=submit value="Register" class=sbmt>
+                                        </td>
+                                    </tr>
+                                </table>
+                        </form>
+
+
+                                            </div>
+                </div>
+            </div>
+            <div class="loginpageright" style="padding-top:200px">
+                <a href="https://beta.companieshouse.gov.uk/company/12047473" target="_blank">
+                    <img src="styles/assets/images/loginpageright.png" alt="" />
+                </a>
+            </div>
+        </div>
+        </div>
+    </body>
+    <div class="primebitContainer">
+        <div class="primebitInner">
+            <h1><span>3 level</span> Referral commission</h1>
+            <div class="ctn-level">
+                <div class="livel-part">
+                    <h2>4<span>%</span></h2>
+                    <p>livel1</p>
+                </div>
+                <div class="livel-img">
+                    <img src="styles/assets/images/call-ic2.png">
+                </div>
+                <div class="livel-part">
+                    <h2>0.5<span>%</span></h2>
+                    <p>livel2</p>
+                </div>
+                <div class="livel-img">
+                    <img src="styles/assets/images/call-ic2.png">
+                </div>
+                <div class="livel-part">
+                    <h2>0.5<span>%</span></h2>
+                    <p>livel3</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="solidContainer">
+        <div class="solidInner zoomIn wow">
+            <div class="solid">
+                <a href="#" class="solid1"></a>
+                <a href="#" class="solid2"></a>
+                <a href="#" class="solid3"></a>
+                <a href="#" class="solid4"></a>
+                <a href="#" class="solid5"></a>
+                <a href="#" class="solid6"></a>
+                <a href="#" class="solid7"></a>
+                <a href="#" class="solid8"></a>
+            </div>
+        </div>
+    </div>
+    <div class="footerContainer">
+        <div class="footerInner">
+            <div class="ft-row1">
+                <h3>&copy; <script type="text/javascript">document.write( new Date().getFullYear() );</script>. <a href="indexbc14.html?a=home">BX-Miners</a> ALL RIGHTS RESERVED</h3>
+            </div>
+            <div class="ft-part1"> <a href="indexe47e.html?a=about">ABOUT US</a> <a href="index56ca.html?a=news">NEWS</a> <a href="index38cd.html?a=faq">FAQ</a> <a href="index15a0.html?a=support">support</a> <a href="index2851.html?a=cust&amp;page=privacy">terms</a><a href="indexa972.html?a=rules">rules</a></div>
+  </div>
+    </div>
+    <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5e90fce335bcbb0c9aafdbe8/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+</body>
+
+
+
+<!-- Mirrored from bx-miners.uk/?a=signup by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 24 Aug 2020 01:03:04 GMT -->
+</html>
