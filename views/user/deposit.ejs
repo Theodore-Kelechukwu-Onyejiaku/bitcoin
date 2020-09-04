@@ -1,0 +1,231 @@
+<%- include("../partials/user/header") %>
+<style>
+    body {
+        color: #000!important;
+    }
+    </style>
+    
+    
+    <script language="javascript">
+    function openCalculator(id)
+    {
+    
+      w = 225; h = 400;
+      t = (screen.height-h-30)/2;
+      l = (screen.width-w-30)/2;
+      window.open('?a=calendar&type=' + id, 'calculator' + id, "top="+t+",left="+l+",width="+w+",height="+h+",resizable=1,scrollbars=0");
+    
+    
+      
+      for (i = 0; i < document.spendform.h_id.length; i++)
+      {
+        if (document.spendform.h_id[i].value == id)
+        {
+          document.spendform.h_id[i].checked = true;
+        }
+      }
+    
+      
+    
+    }
+    
+    function updateCompound() {
+      var id = 0;
+      var tt = document.spendform.h_id.type;
+      if (tt && tt.toLowerCase() == 'hidden') {
+        id = document.spendform.h_id.value;
+      } else {
+        for (i = 0; i < document.spendform.h_id.length; i++) {
+          if (document.spendform.h_id[i].checked) {
+            id = document.spendform.h_id[i].value;
+          }
+        }
+      }
+    
+      var cpObj = document.getElementById('compound_percents');
+      if (cpObj) {
+        while (cpObj.options.length != 0) {
+          cpObj.options[0] = null;
+        }
+      }
+    
+      if (cps[id] && cps[id].length > 0) {
+        document.getElementById('coumpond_block').style.display = '';
+    
+        for (i in cps[id]) {
+          cpObj.options[cpObj.options.length] = new Option(cps[id][i]);
+        }
+      } else {
+        document.getElementById('coumpond_block').style.display = 'none';
+      }
+    }
+    var cps = {};
+    </script>
+    
+    
+    
+    
+    <h3>Select Plan and Make a Deposit</h3>
+    <br>
+    <form method=post name="spendform"><input type="hidden" name="form_id" value="15991274917387"><input type="hidden" name="form_token" value="67c19e1a295e634ff112d9977805e046">
+    <input type=hidden name=a value=deposit>
+       Select a plan:<br>
+    
+    <table cellspacing=1 cellpadding=2 border=0 width=100%><tr>
+     <td colspan=3>
+        <input type=radio name=h_id value='4'  checked  onclick="updateCompound()"> 
+    <!--	<input type=radio name=h_id value='4'  checked  > -->
+    
+        <b>Starter Plan</b></td>
+    </tr><tr>
+     <td class=inheader>Plan</td>
+     <td class=inheader width=200>Spent Amount ($)</td>
+     <td class=inheader width=100 nowrap><nobr>Hourly Profit (%)</nobr></td>
+    </tr>
+    <tr>
+     <td class=item>5% Hourly For 24 Hours</td>
+     <td class=item align=right>$20.00 - $100.00</td>
+     <td class=item align=right>5.00</td>
+    </tr>
+    <tr>
+     <td colspan=3 align=right><a href="javascript:openCalculator('4')">Calculate your profit &gt;&gt;</a></td>
+    </tr>
+    </table><br><br>
+    <script>
+    cps[4] = [];
+    </script>
+    <table cellspacing=1 cellpadding=2 border=0 width=100%><tr>
+     <td colspan=3>
+        <input type=radio name=h_id value='5'  onclick="updateCompound()"> 
+    <!--	<input type=radio name=h_id value='5'  > -->
+    
+        <b>Premium Plan</b></td>
+    </tr><tr>
+     <td class=inheader>Plan</td>
+     <td class=inheader width=200>Spent Amount ($)</td>
+     <td class=inheader width=100 nowrap><nobr>Hourly Profit (%)</nobr></td>
+    </tr>
+    <tr>
+     <td class=item>5% Hourly For 48 Hours</td>
+     <td class=item align=right>$110.00 - $500.00</td>
+     <td class=item align=right>5.00</td>
+    </tr>
+    <tr>
+     <td colspan=3 align=right><a href="javascript:openCalculator('5')">Calculate your profit &gt;&gt;</a></td>
+    </tr>
+    </table><br><br>
+    <script>
+    cps[5] = [];
+    </script>
+    <table cellspacing=1 cellpadding=2 border=0 width=100%><tr>
+     <td colspan=3>
+        <input type=radio name=h_id value='6'  onclick="updateCompound()"> 
+    <!--	<input type=radio name=h_id value='6'  > -->
+    
+        <b>Advanced Plan</b></td>
+    </tr><tr>
+     <td class=inheader>Plan</td>
+     <td class=inheader width=200>Spent Amount ($)</td>
+     <td class=inheader width=100 nowrap><nobr>Hourly Profit (%)</nobr></td>
+    </tr>
+    <tr>
+     <td class=item>6.25% Hourly For 48 Hours</td>
+     <td class=item align=right>$550.00 - $5000.00</td>
+     <td class=item align=right>6.25</td>
+    </tr>
+    <tr>
+     <td colspan=3 align=right><a href="javascript:openCalculator('6')">Calculate your profit &gt;&gt;</a></td>
+    </tr>
+    </table><br><br>
+    <script>
+    cps[6] = [];
+    </script>
+    <table cellspacing=1 cellpadding=2 border=0 width=100%><tr>
+     <td colspan=3>
+        <input type=radio name=h_id value='7'  onclick="updateCompound()"> 
+    <!--	<input type=radio name=h_id value='7'  > -->
+    
+        <b>Vip Plan</b></td>
+    </tr><tr>
+     <td class=inheader>Plan</td>
+     <td class=inheader width=200>Spent Amount ($)</td>
+     <td class=inheader width=100 nowrap><nobr>Hourly Profit (%)</nobr></td>
+    </tr>
+    <tr>
+     <td class=item>40% Hourly For 12 Hours</td>
+     <td class=item align=right>$5100.00 - $10000.00</td>
+     <td class=item align=right>40.00</td>
+    </tr>
+    <tr>
+     <td colspan=3 align=right><a href="javascript:openCalculator('7')">Calculate your profit &gt;&gt;</a></td>
+    </tr>
+    </table><br><br>
+    <script>
+    cps[7] = [];
+    </script>
+    
+    
+    <table cellspacing=0 cellpadding=2 border=0>
+    <tr>
+     <td>Your account balance ($):</td>
+     <td align=right>$0.00</td>
+    </tr>
+    <tr><td>&nbsp;</td>
+     <td align=right>
+      <small>
+                                                                                                            </small>
+     </td>
+    </tr>
+    <tr>
+     <td>Amount to Spend ($):</td>
+     <td align=right><input type=text name=amount value='20.00' class=inpts size=15 style="text-align:right;"></td>
+    </tr>
+    <tr id="coumpond_block" style="display:none">
+     <td>Compounding(%):</td>
+     <td align=right>
+      <select name="compound" class=inpts id="compound_percents"></select>
+     </td>
+    </tr>
+    
+    <tr>
+      <td colspan=2>
+       <table cellspacing=0 cellpadding=2 border=0>
+                                                                                                                                                                          <tr>
+         <td><input type=radio name=type value="process_48" ></td>
+         <td>Spend funds from Bitcoin</td>
+        </tr>
+                                                    </table>
+      </td>
+    </tr>
+    <tr>
+     <td colspan=2><input type=submit value="Spend" class=sbmt></td>
+    </tr></table>
+    </form>
+    
+    <script language=javascript>
+    for (i = 0; i<document.spendform.type.length; i++) {
+      if ((document.spendform.type[i].value.match(/^process_/))) {
+        document.spendform.type[i].checked = true;
+        break;
+      }
+    }
+    updateCompound();
+    </script>
+    
+    
+    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        
+    
+    </div>
+    <div class="solidContainer">
+      <div class="solidInner zoomIn wow">
+        <div class="solid"> <a href="#" class="solid1"></a> <a href="#" class="solid2"></a> <a href="#" class="solid3"></a> <a href="#" class="solid4"></a> <a href="#" class="solid5"></a> <a href="#" class="solid6"></a> <a href="#" class="solid7"></a> <a href="#" class="solid8"></a> </div>
+      </div>
+    </div>
+
+
+
+<%- include("../partials/user/footer") %>

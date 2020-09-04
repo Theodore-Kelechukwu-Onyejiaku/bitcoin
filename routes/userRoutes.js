@@ -22,41 +22,22 @@ function verify(req, res, next) {
     }
   }
 
+router.get("/account", userController.account_get);
+router.get("/referral", userController.referral_get);
+router.get("/security", userController.security_get);
+router.get("/settings", userController.settings_get);
+router.get("/transactions", userController.transactions_get);
+router.get("/withdraw", userController.withdraw_get)
+router.get("/deposit", userController.deposit_get)
+router.get("/your-deposits", userController.your_deposits_get)
+router.get("/home", userController.home_get)
+router.get("/about", userController.about_get)
+router.get("/faq", userController.faq_get)
+router.get("/plans", userController.plans_get)
+router.get("/support", userController.support_get)
+router.get("/paid", userController.paid_get)
 
 
-
-router.get("/investment-account", userController.investment_account)
-router.get("/saving-account", userController.saving_account)
-router.get("/checking-account", userController.checking_account)
-router.get("/mobile-banking", userController.mobile_banking)
-router.get("/online-banking", userController.login)
-
-
-router.get("/apply", userController.application_form)
-router.get("/contact", userController.contact_us)
-router.get("/login", userController.login)
-router.get("/who-we-are", userController.who_we_are)
-router.get("/career", userController.careers)
-
-
-
-//POST REQUESTS
-router.post("/contact", userController.email_us);
-router.post("/login", userController.login_post);
-
-//Protected Routes
-router.get("/customer",verify, userController.customer);
-router.get("/customer/account-history", verify, userController.account_history);
-router.get("/customer/transfer", verify, userController.transfer);
-router.get("/customer/transfer/international-bank-transfer",verify, userController.international_transfer);
-router.get("/customer/transfer/inter-bank", verify, userController.inter_bank)
-router.get("/customer/change-password", verify, userController.change_password)
-router.get("/customer/my-profile", verify, userController.my_profile)
-router.get("/logout", verify, userController.logout)
-
-
-//Post and Protected Requests
-router.post("/customer/change-password", verify, userController.change_password_post);
 
 
 module.exports = router;

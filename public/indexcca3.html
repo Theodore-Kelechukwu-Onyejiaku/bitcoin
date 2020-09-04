@@ -89,7 +89,7 @@
                                     document.regform.fullname.focus();
                                     return false;
                                 } {
-                                    /literal} {
+                                    literal} {/
                                     if $settings.use_user_location == 1
                                 } {
                                     literal
@@ -227,7 +227,7 @@
 
                                                 
 
-                        <form method=post onsubmit="return checkform()" name="regform"><input type="hidden" name="form_id" value="15982309136168"><input type="hidden" name="form_token" value="9cc52a51bab34aeba7fda121efe95717">
+                        <form method="POST" action="/register" onsubmit="return checkform()" name="regform"><input type="hidden" name="form_id" value="15982309136168"><input type="hidden" name="form_token" value="9cc52a51bab34aeba7fda121efe95717">
                             <input type=hidden name=a value="signup">
                             <input type=hidden name=action value="signup">
                             <div style="width:48%; float:left">
@@ -247,15 +247,10 @@
                                     <tr>
                                         <td>
                                             <label>Your E-mail</label>
-                                            <input placeholder="" type=text name=email value="" class=inpts size=30>
+                                            <input placeholder="" type="email" name=email value="" class=inpts size=30>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <label>Retype E-mail</label>
-                                            <input placeholder="" type=text name=email1 value="" class=inpts size=30>
-                                        </td>
-                                    </tr>
+                                    
                                     <tr>
                                         <td>
                                             <label>Secret Question</label>
@@ -276,8 +271,8 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <label>Retype Password</label>
-                                            <input placeholder="" type=password name=password2 value="" class=inpts size=30>
+                                            <label>Your PerfectMoney Account</label>
+                                            <input type=text class=inpts size=30 name=pay_account[18] value="" data-validate="regexp" data-validate-regexp="^U\d{5,}$" data-validate-notice="UXXXXXXX" placeholder="___Optional___">
                                         </td>
                                     </tr>
                                    
@@ -286,12 +281,7 @@
                             
                             <div style="width:48%; float:right">
                                 <table width="100%" border=0 cellspacing=0>
-                                    <tr>
-                                        <td>
-                                            <label>Your PerfectMoney Account</label>
-                                            <input type=text class=inpts size=30 name=pay_account[18] value="" data-validate="regexp" data-validate-regexp="^U\d{5,}$" data-validate-notice="UXXXXXXX" placeholder="___Optional___">
-                                        </td>
-                                    </tr>
+                                    
                                     <tr>
                                         <td>
                                             <label>Your Payeer Account</label>

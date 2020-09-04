@@ -7,7 +7,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 
 // //Importing routes
-// const userRoutes = require("./routes/userRoutes")
+const userRoutes = require("./routes/userRoutes")
 // const adminRoutes = require("./routes/adminRoutes")
 
 const {validateRegistration, validateLogin} = require("./validation");
@@ -33,12 +33,13 @@ app.set('view engine', 'ejs');
 
 
 app.use(express.static("public"))
-// app.use("/", userRoutes);
+app.use("/", userRoutes);
 // app.use("/admin", adminRoutes);
 
 
 
-var mongoDB = process.env.DB_ONLINE;
+
+var mongoDB = process.env.DB_LOCAL;
 mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
 var db = mongoose.connections;
 db.concat("error", console.error.bind(console, "MongoDB connection error."));

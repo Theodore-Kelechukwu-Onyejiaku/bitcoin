@@ -1,79 +1,144 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>Customer Dashboard | Firstbtx - Citizens Trust Bank of Texa</title>
-	
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/custom.css">
-
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
-
-    <link rel="shortcut icon" href="/wp-content/uploads/2019/03/Favicon.png" type="image/x-icon" />
-
-    		<link rel="stylesheet" type="text/css" href="/assets/dashboard/dashboard.css"> 		
-</head>
-
-<body>
-	<div class="ctb-bg">
-		<div id="body">
-
-		    <div id="wrapper">
-
-		        <!-- Navigation -->
-                <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-light mb-3">
-    <div class="flex-row d-flex">
-        <button type="button" class="navbar-toggler mr-2 bg-primary" data-toggle="offcanvas" title="Toggle responsive left sidebar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="/customer" title="Citizens Trust Bank">
-            <img class="img-fluid" src="/assets/img/ctb-logo.jpg" style="height: 60px;">
-        </a>
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+        <title>BX-Miners LTD</title>
+        <link href='styles/assets/custom.css' rel='stylesheet' type='text/css'>
+        <link href='styles/assets/hover.css' rel='stylesheet' type='text/css'>
+        <link href='styles/assets/animate.css' rel='stylesheet' type='text/css'>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="styles/assets/images/favicon.png" type="image/png"/>
+        <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700" rel="stylesheet">
+        <link href='styles/assets/bootstrap.min.css' rel='stylesheet' type='text/css'>
+        <link href='styles/assets/custom_back.css' rel='stylesheet' type='text/css'>
+        <script src='styles/assets/jquery.js' type='text/javascript'></script>
+        <script src="styles/assets/wow.js"></script>
+        <script src="styles/assets/wow.min.js"></script>
+        <script type="text/javascript" src="styles/assets/bootstrap.min.js"></script>
+        <script src='styles/assets/setting.js' type='text/javascript'></script>
+    
+    
+        <script type="text/javascript">
+        //// Get the CryptoCurrency Information from the API
+        jQuery.ajax({
+            url: "https://min-api.cryptocompare.com/data/pricemulti",
+            data: "fsyms=BTC,ETH,DASH,LTC&tsyms=USD",
+            dataType : 'json',
+        }).done(function(data) {
+            // console.log( "BTC : " + data.BTC.USD + ", ETH : " + data.ETH.USD + ", DASH : " + data.DASH.USD, LTC : " + data.LTC.USD);
+            jQuery(".dashCoin").html('$' + data.DASH.USD);
+            jQuery(".ethCoin").html('$' + data.ETH.USD);
+            jQuery(".bitCoin").html('$' + data.BTC.USD);
+            jQuery(".liteCoin").html('$' + data.LTC.USD);
+        }).fail(function() {
+            console.log( "API error" );
+        });
+    </script>
+    
+        <script type="text/javascript">
+        $(document).ready(function() {
+            $(".cal2").click(function() {
+                $(".calculate_ctn").toggle();
+                $(".calculate_ctn").addClass("animated lightSpeedIn");
+            });
+        });
+    </script>
+    
+    
+    
+    <script type="text/javascript">
+        var tday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
+        var tmonth=new Array("January","February","March","April","May","June","July","August","September","October","November","December");
+    
+        function GetClock(){
+            var tzOffset = -5;//set this to the number of hours offset from UTC
+    
+            var d=new Date();
+            var dx=d.toGMTString();
+            dx=dx.substr(0,dx.length -3);
+            d.setTime(Date.parse(dx))
+            d.setHours(d.getHours()+tzOffset);
+            var nday=d.getDay(),nmonth=d.getMonth(),ndate=d.getDate();
+            var nhour=d.getHours(),nmin=d.getMinutes(),ap;
+            if(nhour==0){ap=" AM";nhour=12;}
+            else if(nhour<12){ap=" AM";}
+            else if(nhour==12){ap=" PM";}
+            else if(nhour>12){ap=" PM";nhour-=12;}
+    
+            if(nmin<=9) nmin="0"+nmin;
+    
+            document.getElementById('clockbox').innerHTML=""+tday[nday]+", "+tmonth[nmonth]+" "+ndate+" "+nhour+":"+nmin+ap+"";
+        }
+    
+        window.onload=function(){
+            GetClock();
+            setInterval(GetClock,1000);
+        }
+    </script>
+    
+    
+    
+    
+    
+    
+    
+    </head>
+    
+    <div class="headerContainer">
+        <div class="headerInner fadeInLeft wow"> <a href="?a=home" id="logo"></a>
+            <p>1 BTC: <span class="bitCoin"></span></p>
+            <div class="hdRight">
+                <div class="mainNavRight">
+                    <div class="navbar">
+                        <div class="navbar-inner">
+                            <ul class="nav">
+                                <li><a href="/home">Home</a></li>
+                                <li><a href="/about">About</a></li>
+                                <li><a href="/faq">FAQ </a></li>
+                                <li><a href="/plans">PLANS</a></li>
+                                <li><a href="/support">SUPPORT</a></li>
+                                <li><a href="/paid">PAID</a></li>
+                                                            <li><a href="/logout" class="login">logout</a></li>
+                                <li><a href="/account" class="signup">dashboard</a></li>						</ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <button class="navbar-toggler bg-primary" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse collapse" id="collapsingNavbar">
-        <ul class="navbar-nav ml-auto topbar">
-            <li class="nav-item active">
-                <i class="fa fa-map-marker"></i>
-            </li>
-            <li class="nav-item">
-                <i class="fa fa-envelope"></i> customercare@ctbconnectt.com
-            </li>
-            <li class="nav-item">
-                <i class="fa fa-phone"></i> +1(678) 961-4008
-            </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#myAlert" data-toggle="collapse"></a>
-            </li>
-
-        </ul>
-    </div>
-</nav>
-				<div class="container-fluid" id="main">
-    				<div class="row row-offcanvas row-offcanvas-left">
-    					
-                        <div class="col-md-3 col-lg-2 sidebar-offcanvas  pl-0" id="sidebar" role="navigation">
-    <ul class="nav flex-column sticky-top pl-0 pt-5 mt-3 sidebar">
-        <li class="text-center text-uppercase text-light pt-3">
-            <h3><%= data.username %></h3>
-        </li>
-        <li class="nav-item"><a class="nav-link" href="/customer"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link" href="/customer/account-history"><i class="fa fa-book"></i> Account History</a></li>
-        <!--<li class="nav-item"><a class="nav-link" href=""><i class="fa fa-file-o"></i> Account Summary</a></li>-->
-        <li class="nav-item"><a class="nav-link" href="/customer/transfer"><i class="fa fa-send"></i> Transfer</a></li>
-        <li class="nav-item"><a class="nav-link" href="/customer/change-password"><i class="fa fa-key"></i> Change Password</a></li>
-        <li class="nav-item"><a class="nav-link" href="/customer/my-profile"><i class="fa fa-user"></i> Profile</a></li>
-        <li class="nav-item"><a class="nav-link" href="/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
-    </ul>
-</div>	
+    <body>
+    
+        
+    
+    
+        
+        <div class="account_contentContainer">
+                <div class="account_contentInner">
+                    <div class="account_title">
+                        <div class="account_title_Left">
+                            <div class="user"></div>
+                            <p>Hello, <span>john_doe_123</span></p>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="account_title_Right">
+                            <p>Your Personal Affiliate Link:</p>
+                            <a href="https://bx-miners.uk/?ref=john_doe_123"> https://bx-miners.uk/?ref=john_doe_123</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="account_ctn">
+                        <div class="account_ctn_Left">
+                            <ul>
+                                <li><a class="btn_acc hvr-sweep-to-right" href="/account">account</a></li>
+                                <li><a class="btn_dep hvr-sweep-to-right" href="/deposit">deposit</a></li>
+                                <li><a class="btn_withd hvr-sweep-to-right" href="/withdraw">withdraw</a></li>
+                                <li><a class="btn_yourdep hvr-sweep-to-right" href="/your-deposits">your deposits</a></li>
+                                <li><a class="btn_trans hvr-sweep-to-right" href="/transactions">transactions</a></li>
+                                <li><a class="btn_refer hvr-sweep-to-right" href="/referral">referrals</a></li>
+                                <li><a class="btn_setting hvr-sweep-to-right" href="/settings">settings</a></li>
+                                <li><a class="btn_securi hvr-sweep-to-right" href="/security">security</a></li>
+                            </ul>
+                        </div>
+                        <div class="account_ctn_Right">
+          

@@ -1,0 +1,289 @@
+
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+        <title>BX-Miners LTD</title>
+        <link href='styles/assets/custom.css' rel='stylesheet' type='text/css'>
+        <link href='styles/assets/hover.css' rel='stylesheet' type='text/css'>
+        <link href='styles/assets/animate.css' rel='stylesheet' type='text/css'>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+        <link rel="icon" href="styles/assets/images/favicon.png" type="image/png"/>
+        <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700" rel="stylesheet">
+        <link href='styles/assets/bootstrap.min.css' rel='stylesheet' type='text/css'>
+        <link href='styles/assets/custom_back.css' rel='stylesheet' type='text/css'>
+        <script src='styles/assets/jquery.js' type='text/javascript'></script>
+        <script src="styles/assets/wow.js"></script>
+        <script src="styles/assets/wow.min.js"></script>
+        <script type="text/javascript" src="styles/assets/bootstrap.min.js"></script>
+        <script src='styles/assets/setting.js' type='text/javascript'></script>
+    
+    
+        <script type="text/javascript">
+        //// Get the CryptoCurrency Information from the API
+        jQuery.ajax({
+            url: "https://min-api.cryptocompare.com/data/pricemulti",
+            data: "fsyms=BTC,ETH,DASH,LTC&tsyms=USD",
+            dataType : 'json',
+        }).done(function(data) {
+            // console.log( "BTC : " + data.BTC.USD + ", ETH : " + data.ETH.USD + ", DASH : " + data.DASH.USD, LTC : " + data.LTC.USD);
+            jQuery(".dashCoin").html('$' + data.DASH.USD);
+            jQuery(".ethCoin").html('$' + data.ETH.USD);
+            jQuery(".bitCoin").html('$' + data.BTC.USD);
+            jQuery(".liteCoin").html('$' + data.LTC.USD);
+        }).fail(function() {
+            console.log( "API error" );
+        });
+    </script>
+    
+        <script type="text/javascript">
+        $(document).ready(function() {
+            $(".cal2").click(function() {
+                $(".calculate_ctn").toggle();
+                $(".calculate_ctn").addClass("animated lightSpeedIn");
+            });
+        });
+    </script>
+    
+    
+    
+    <script type="text/javascript">
+        var tday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
+        var tmonth=new Array("January","February","March","April","May","June","July","August","September","October","November","December");
+    
+        function GetClock(){
+            var tzOffset = -5;//set this to the number of hours offset from UTC
+    
+            var d=new Date();
+            var dx=d.toGMTString();
+            dx=dx.substr(0,dx.length -3);
+            d.setTime(Date.parse(dx))
+            d.setHours(d.getHours()+tzOffset);
+            var nday=d.getDay(),nmonth=d.getMonth(),ndate=d.getDate();
+            var nhour=d.getHours(),nmin=d.getMinutes(),ap;
+            if(nhour==0){ap=" AM";nhour=12;}
+            else if(nhour<12){ap=" AM";}
+            else if(nhour==12){ap=" PM";}
+            else if(nhour>12){ap=" PM";nhour-=12;}
+    
+            if(nmin<=9) nmin="0"+nmin;
+    
+            document.getElementById('clockbox').innerHTML=""+tday[nday]+", "+tmonth[nmonth]+" "+ndate+" "+nhour+":"+nmin+ap+"";
+        }
+    
+        window.onload=function(){
+            GetClock();
+            setInterval(GetClock,1000);
+        }
+    </script>
+    
+    
+    
+    
+    
+    
+    
+    </head>
+    
+    <div class="headerContainer">
+        <div class="headerInner fadeInLeft wow"> <a href="?a=home" id="logo"></a>
+            <p>1 BTC: <span class="bitCoin"></span></p>
+            <div class="hdRight">
+                <div class="mainNavRight">
+                    <div class="navbar">
+                        <div class="navbar-inner">
+                            <ul class="nav">
+                                <li><a href="?a=home">Home</a></li>
+                                <li><a href="?a=about">About</a></li>
+                                <li><a href="?a=faq">FAQ </a></li>
+                                <li><a href="?a=cust&amp;page=investment">PLANS</a></li>
+                                <li><a href="?a=support">SUPPORT</a></li>
+                                <li><a href="?a=home">PAID</a></li>
+                                                            <li><a href="?a=logout" class="login">logout</a></li>
+                                <li><a href="?a=account" class="signup">dashboard</a></li>						</ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <body>
+    
+        
+    
+    
+        
+    <div class="account_contentContainer">
+            <div class="account_contentInner">
+                <div class="account_title">
+                    <div class="account_title_Left">
+                        <div class="user"></div>
+                        <p>Hello, <span>john_doe_123</span></p>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="account_title_Right">
+                        <p>Your Personal Affiliate Link:</p>
+                        <a href="https://bx-miners.uk/?ref=john_doe_123"> https://bx-miners.uk/?ref=john_doe_123</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="account_ctn">
+                    <div class="account_ctn_Left">
+                        <ul>
+                            <li><a class="btn_acc hvr-sweep-to-right" href="?a=account">account</a></li>
+                            <li><a class="btn_dep hvr-sweep-to-right" href="?a=deposit">deposit</a></li>
+                            <li><a class="btn_withd hvr-sweep-to-right" href="?a=withdraw">withdraw</a></li>
+                            <li><a class="btn_yourdep hvr-sweep-to-right" href="?a=deposit_list">your deposits</a></li>
+                            <li><a class="btn_trans hvr-sweep-to-right" href="?a=deposit_history">transactions</a></li>
+                            <li><a class="btn_refer hvr-sweep-to-right" href="?a=referals">referrals</a></li>
+                            <li><a class="btn_setting hvr-sweep-to-right" href="?a=edit_account">settings</a></li>
+                            <li><a class="btn_securi hvr-sweep-to-right" href="?a=security">security</a></li>
+                        </ul>
+                    </div>
+                    <div class="account_ctn_Right">
+    
+    
+    
+    <style>
+    body {
+        color: #000!important;
+    }
+    </style>
+    <h3>Your deposits:</h3><br>
+    
+    <b>Total: $0.00</b><br><br>
+    
+    <table cellspacing=1 cellpadding=2 border=0 width=100% class=line><tr><td class=item>
+    <table cellspacing=1 cellpadding=2 border=0 width=100%><tr>
+     <td colspan=3 align=center><b>Starter Plan</b></td>
+    </tr><tr>
+     <td class=inheader>Plan</td>
+     <td class=inheader width=200>Amount Spent ($)</td>
+     <td class=inheader width=100 nowrap><nobr>Hourly Profit (%)</nobr></td>
+    </tr>
+    <tr>
+     <td class=item>5% Hourly For 24 Hours</td>
+     <td class=item align=right>$20.00 - $100.00</td>
+     <td class=item align=right>5.00</td>
+    </tr>
+    </table>
+    <br>
+    <table cellspacing=1 cellpadding=2 border=0 width=100%><tr>
+     <td colspan=4><b>No deposits for this plan</b></td>
+    </tr>           
+    </table>
+    <br>
+    </td></tr></table>
+    <br>
+    <table cellspacing=1 cellpadding=2 border=0 width=100% class=line><tr><td class=item>
+    <table cellspacing=1 cellpadding=2 border=0 width=100%><tr>
+     <td colspan=3 align=center><b>Premium Plan</b></td>
+    </tr><tr>
+     <td class=inheader>Plan</td>
+     <td class=inheader width=200>Amount Spent ($)</td>
+     <td class=inheader width=100 nowrap><nobr>Hourly Profit (%)</nobr></td>
+    </tr>
+    <tr>
+     <td class=item>5% Hourly For 48 Hours</td>
+     <td class=item align=right>$110.00 - $500.00</td>
+     <td class=item align=right>5.00</td>
+    </tr>
+    </table>
+    <br>
+    <table cellspacing=1 cellpadding=2 border=0 width=100%><tr>
+     <td colspan=4><b>No deposits for this plan</b></td>
+    </tr>           
+    </table>
+    <br>
+    </td></tr></table>
+    <br>
+    <table cellspacing=1 cellpadding=2 border=0 width=100% class=line><tr><td class=item>
+    <table cellspacing=1 cellpadding=2 border=0 width=100%><tr>
+     <td colspan=3 align=center><b>Advanced Plan</b></td>
+    </tr><tr>
+     <td class=inheader>Plan</td>
+     <td class=inheader width=200>Amount Spent ($)</td>
+     <td class=inheader width=100 nowrap><nobr>Hourly Profit (%)</nobr></td>
+    </tr>
+    <tr>
+     <td class=item>6.25% Hourly For 48 Hours</td>
+     <td class=item align=right>$550.00 - $5000.00</td>
+     <td class=item align=right>6.25</td>
+    </tr>
+    </table>
+    <br>
+    <table cellspacing=1 cellpadding=2 border=0 width=100%><tr>
+     <td colspan=4><b>No deposits for this plan</b></td>
+    </tr>           
+    </table>
+    <br>
+    </td></tr></table>
+    <br>
+    <table cellspacing=1 cellpadding=2 border=0 width=100% class=line><tr><td class=item>
+    <table cellspacing=1 cellpadding=2 border=0 width=100%><tr>
+     <td colspan=3 align=center><b>Vip Plan</b></td>
+    </tr><tr>
+     <td class=inheader>Plan</td>
+     <td class=inheader width=200>Amount Spent ($)</td>
+     <td class=inheader width=100 nowrap><nobr>Hourly Profit (%)</nobr></td>
+    </tr>
+    <tr>
+     <td class=item>40% Hourly For 12 Hours</td>
+     <td class=item align=right>$5100.00 - $10000.00</td>
+     <td class=item align=right>40.00</td>
+    </tr>
+    </table>
+    <br>
+    <table cellspacing=1 cellpadding=2 border=0 width=100%><tr>
+     <td colspan=4><b>No deposits for this plan</b></td>
+    </tr>           
+    </table>
+    <br>
+    </td></tr></table>
+    <br>
+    
+    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        
+    
+    </div>
+    <div class="solidContainer">
+      <div class="solidInner zoomIn wow">
+        <div class="solid"> <a href="#" class="solid1"></a> <a href="#" class="solid2"></a> <a href="#" class="solid3"></a> <a href="#" class="solid4"></a> <a href="#" class="solid5"></a> <a href="#" class="solid6"></a> <a href="#" class="solid7"></a> <a href="#" class="solid8"></a> </div>
+      </div>
+    </div>
+    <div class="footerContainer">
+      <div class="footerInner">
+        <div class="ft-row1">
+          <h3>&copy; <script type="text/javascript">document.write( new Date().getFullYear() );</script>. <a href="?a=home">BX-Miners</a> ALL RIGHTS RESERVED</h3>
+        </div>
+        <div class="ft-part1"> <a href="?a=about">ABOUT US</a> <a href="?a=news">NEWS</a> <a href="?a=faq">FAQ</a> <a href="?a=support">support</a> <a href="?a=cust&page=privacy">terms</a><a href="?a=rules">rules</a></div>
+      </div>
+    </div>
+    
+    
+    
+    <div style="position:fixed; bottom:0px; right:0px;">
+    
+    
+    </div>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/5e90fce335bcbb0c9aafdbe8/default';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
+    </body>
+    </html>
+    
+    

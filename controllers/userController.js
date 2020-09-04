@@ -1,6 +1,6 @@
 const User = require("../models/userModel");
-const Admin = require("../models/adminModel");
-const Account = require("../models/accountModel");
+//const Admin = require("../models/adminModel");
+
 
 const nodemailer = require("nodemailer")
 const jwt = require("jsonwebtoken");
@@ -18,44 +18,6 @@ exports.logout = function(req, res, next){
     res.redirect("/login")
 }
 
-exports.investment_account = function(req, res, next){
-    res.render("user/investment-account");
-    next();
-}
-
-exports.saving_account = function(req, res, next){
-    res.render("user/saving-account");
-    next()
-}
-
-exports.checking_account = function(req, res, next){
-    res.render("user/checking-account");
-    next();
-}
-
-exports.mobile_banking = function(req, res, next){
-    res.render("user/mobile-banking");
-    next()
-}
-
-
-exports.who_we_are = function(req, res, next){
-    res.render("user/who-we-are");
-    next();
-}
-
-exports.contact_us = function(req, res, next){
-    res.render("user/contact-us");
-    next();
-}
-
-exports.careers = function(req, res, next){
-    res.render("user/careers")
-}
-
-exports.application_form = function(req, res, next){
-    res.render("user/application-form")
-}
 
 
 
@@ -121,146 +83,41 @@ exports.email_us =async  function(req, res, next){
 }
 
 
-//login page
-exports.login = function(req, res, next){
-    res.render("user/login");
-    next()
-}
 
 
-//customer dashboard
-exports.customer = function(req, res, next){
+// //customer dashboard
+// exports.customer = function(req, res, next){
 
-    async.parallel({
-        user: function(callback){
-                User.findById(req.user_data._id)
-                .exec(callback)
-        },
-        account: function(callback){
-                Account.findOne({"user": req.user_data._id})
-                    .populate("user")
-                    .exec(callback)
-        }
-    }, function(err, results){
+//     async.parallel({
+//         user: function(callback){
+//                 User.findById(req.user_data._id)
+//                 .exec(callback)
+//         },
+//         account: function(callback){
+//                 Account.findOne({"user": req.user_data._id})
+//                     .populate("user")
+//                     .exec(callback)
+//         }
+//     }, function(err, results){
 
-        if(err){
-             console.log("User not found!")
-             return next(err)
-        }
-        if(results.user === null){
-            var err = new Error("Main user not found at all")
-            err.status =   404;
-            console.log("Main user not found at all")
-            return next(err)
-        }
+//         if(err){
+//              console.log("User not found!")
+//              return next(err)
+//         }
+//         if(results.user === null){
+//             var err = new Error("Main user not found at all")
+//             err.status =   404;
+//             console.log("Main user not found at all")
+//             return next(err)
+//         }
 
-        //successful
-        res.render("user/customer", {data: results.user, account: results.account})
-    })
-}
-
-
-//View account history
-exports.account_history = function(req, res, next){
-    async.parallel({
-        user: function(callback){
-                User.findById(req.user_data._id)
-                .exec(callback)
-        },
-        account: function(callback){
-                Account.find({"user": req.user_data._id})
-                    .populate("user")
-                    .exec(callback)
-        }
-    }, function(err, results){
-
-        if(err){
-             console.log("User not found!")
-             return next(err)
-        }
-        if(results.user === null){
-            var err = new Error("Main user not found at all")
-            err.status =   404;
-            console.log("Main user not found at all")
-            return next(err)
-        }
-
-        console.log(results)
-        //successful
-        res.render("user/customer-account-history", {data: results.user, account: results.account})
-    })
-}
-
-//transfer
-exports.transfer = function(req, res, next){
-    User.findById(req.user_data._id, (err, data)=>{
-        if(!err){
-            res.render("user/transfer", {data: data})
-        }else{
-            console.log("Cannot find user")
-        }
-    })
-}
-
-//international transfer
-exports.international_transfer = function(req, res, next){
-    User.findById(req.user_data._id, (err, data)=>{
-        if(!err){
-            res.render("user/international-transfer", {data: data})
-        }else{
-            console.log("Cannot find user")
-        }
-    })
-}
-
-//inter bank transfer
-exports.inter_bank = function(req, res, next){
-    User.findById(req.user_data._id, (err, data)=>{
-        if(!err){
-            res.render("user/inter-bank", {data: data})
-        }else{
-            console.log("Cannot find user")
-        }
-    })
-}
-
-
-exports.change_password = function(req, res, next){
-    User.findById(req.user_data._id, (err, data)=>{
-        if(!err){
-            res.render("user/change-password", {data: data})
-        }else{
-            console.log("Cannot find user")
-        }
-    })
-}
+//         //successful
+//         res.render("user/customer", {data: results.user, account: results.account})
+//     })
+// }
 
 
 
-//View one's profile
-exports.my_profile = function(req, res, next){
-    User.findById(req.user_data._id, (err, data)=>{
-        if(!err){
-            res.render("user/profile", {data: data})
-        }else{
-            console.log("Cannot find user")
-        }
-    })
-}
-
-
-//POST REQUESTS
-
-//Change password post request
-exports.change_password_post = function(req, res, next){
-    User.findByIdAndUpdate({ _id: req.body._id},{password: req.body.new_password}, {new: true}, (err, data)=>{
-        if(!err){
-            res.render("user/change-password", {data: data, message: "Password Updated!"})
-        }else{
-            console.log("Cannot find user")
-        }
-    })
-}
 
 
 
@@ -293,3 +150,61 @@ exports.login_post = function(req, res, next){
                         })
                 })
 }
+
+
+exports.account_get = function(req, res, next){
+    res.render("user/account");
+}
+
+exports.referral_get = function(req, res, next) {
+    res.render("user/referrals");
+}
+
+exports.security_get = function(req, res, next){
+    res.render("user/security");
+}
+
+exports.settings_get = function(req, res, next){
+    res.render("user/settings");
+}
+
+exports.transactions_get = function(req, res, next){
+    res.render("user/transactions");
+}
+
+exports.withdraw_get = function(req, res, next){
+    res.render("user/withdraw");
+}
+
+exports.deposit_get = function(req, res, next){
+    res.render("user/deposit")
+}
+
+exports.your_deposits_get = function(req, res, next){
+    res.render("user/your-deposits")
+}
+
+exports.home_get = function(req, res, next){
+    res.render("user/home")
+}
+
+exports.about_get = function(req, res, next){
+    res.render("user/about")
+}
+
+exports.faq_get = function(req, res, next){
+    res.render("user/faq")
+}
+
+exports.plans_get = function(req, res, next){
+    res.render("user/plans")
+}
+
+exports.support_get = function(req, res, next){
+    res.render("user/support")
+}
+
+exports.paid_get = function(req, res, next){
+    res.render("user/paid")
+}
+

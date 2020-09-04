@@ -1,0 +1,36 @@
+<%- include("../partials/user/header") %>
+
+
+<style>
+    body {
+        color: #000!important;
+    }
+    </style>
+    
+    <h3>Advanced login security settings:</h3><br><br>
+    
+    <form method=post><input type="hidden" name="form_id" value="15991281293382"><input type="hidden" name="form_token" value="d3af31975a2f45a31fd3a2b2b2c63a30">
+    <input type=hidden name=a value="security">
+    <input type=hidden name=action value="save">
+    Detect IP Address Change Sensitivity<br>
+    <input type=radio name=ip value=disabled checked>Disabled<br>
+    <input type=radio name=ip value=medium >Medium<br>
+    <input type=radio name=ip value=high >High<br><br>
+    
+    Detect Browser Change<br>
+    <input type=radio name=browser value=disabled checked>Disabled<br>
+    <input type=radio name=browser value=enabled >Enabled<br><br>
+    <input type=submit value="Set" class=sbmt>
+    </form>
+    
+    
+    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        
+    
+    </div>
+
+
+<%- include("../partials/user/footer") %>
