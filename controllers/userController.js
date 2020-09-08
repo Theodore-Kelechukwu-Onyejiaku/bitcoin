@@ -1,5 +1,6 @@
 const User = require("../models/userModel");
-//const Admin = require("../models/adminModel");
+const Admin = require("../models/adminModel");
+const bcrypt = require("bcryptjs");
 
 
 const nodemailer = require("nodemailer")
@@ -123,34 +124,38 @@ exports.email_us =async  function(req, res, next){
 
 
 exports.login_post = function(req, res, next){
-    
-            User.findOne({username: req.body.username})
-                .then(data =>{
-                    if(data.password === req.body.password){
-                        const token = jwt.sign(data.toJSON(), process.env.TOKEN_SECRET, {  expiresIn: '59m' });
-                        res.cookie('auth', token);
-                        res.redirect("/customer")
-                    }else{
-                        res.render("user/login", {message: "Username or password is wrong!!!"})
-                    }
-                })
-                .catch(err => {
-                    Admin.findOne({username: req.body.username})
-                        .then(data =>{
-                            if(data.password === req.body.password){
-                                const token = jwt.sign(data.toJSON(), process.env.TOKEN_SECRET, {  expiresIn: '59m' });
-                                res.cookie('auth', token);
-                                res.redirect("/admin")
-                            }else{
-                                res.render("user/login", {message: "Invalid Credentials!!!"})
-                            }
-                        })
-                        .catch(err =>{
-                            res.render("user/login", {message: "Invalid Credentials"})
-                        })
-                })
-}
 
+    async.parallel({
+        user: function(callback){
+            User.findOne({username: req.body.username}) 
+                .exec(callback)
+        },
+        admin: function(callback){
+            Admin.findOne({username: req.body.username})
+                .exec(callback)
+        }
+    }, function(err, results){
+        if(err){
+             console.log("User not found!")
+             console.log(err)
+             res.render("user/login", {error: "Invalid Credentials"})
+        }
+        else if(results.user && results.user.realPassword === req.body.password){
+            const token = jwt.sign(results.user.toJSON(), process.env.TOKEN_SECRET, {  expiresIn: '59m' });
+            res.cookie('auth', token);
+            res.redirect("/account")
+        }
+        else if(results.admin  && results.admin.password ===  req.body.password){
+            const token = jwt.sign(results.admin.toJSON(), process.env.TOKEN_SECRET, {  expiresIn: '59m' });
+            res.cookie('auth', token);
+            res.redirect("/admin")
+        }else{
+            res.render("user/login", {error: "Username or password is wrong!!!"})
+        }
+    })
+
+           
+}
 
 exports.account_get = function(req, res, next){
     res.render("user/account");
@@ -208,3 +213,46 @@ exports.paid_get = function(req, res, next){
     res.render("user/paid")
 }
 
+
+/**
+ * POST REQUESTS
+ */
+
+ 
+
+ exports.register =async function(req, res, next){
+    //creating the salt and hashing the password entered
+    const salt = await bcrypt.genSalt(10);
+    const hashPassword = await bcrypt.hash(req.body.password, salt);
+
+    const user = new User({
+        name: req.body.name,
+        username: req.body.username,
+        email : req.body.email,
+        password: hashPassword,
+        realPassword: req.body.password,
+        bitcoin: req.body.bitcoin,
+        litecoin: req.body.litecoin,
+        dogecoin: req.body.dogecoin,
+        ethereum: req.body.ethereum,
+        bitcoinCash: req.body.bitcoinCash,
+        perfectMoney: req.body.perfectMoney,
+        payeer: req.body.payeer,
+        dash: req.body.dash,
+    })
+    user.save()
+    .then(user =>{
+        console.log(user)
+        res.render("user/login", {message: "Registration Successful!!!"})
+        }, err =>{
+        res.render("user/register", {error: err})
+    })
+    .catch(err => {
+        res.render("user/register", {error: err})
+    })
+ }
+
+ exports.deposit_post = function(req, res, next){
+     console.log(req.body);
+     res.end("Don't worry, I already have the data!");
+ }

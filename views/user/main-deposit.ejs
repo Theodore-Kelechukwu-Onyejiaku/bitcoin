@@ -1,46 +1,4 @@
 <%- include("../partials/user/header") %>
-</script>
-
-<script type="text/javascript">
-$(document).ready(function() {
-  $(".cal2").click(function() {
-    $(".calculate_ctn").toggle();
-    $(".calculate_ctn").addClass("animated lightSpeedIn");
-  });
-});
-</script>
-
-
-
-<script type="text/javascript">
-var tday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
-var tmonth=new Array("January","February","March","April","May","June","July","August","September","October","November","December");
-
-function GetClock(){
-  var tzOffset = -5;//set this to the number of hours offset from UTC
-
-  var d=new Date();
-  var dx=d.toGMTString();
-  dx=dx.substr(0,dx.length -3);
-  d.setTime(Date.parse(dx))
-  d.setHours(d.getHours()+tzOffset);
-  var nday=d.getDay(),nmonth=d.getMonth(),ndate=d.getDate();
-  var nhour=d.getHours(),nmin=d.getMinutes(),ap;
-  if(nhour==0){ap=" AM";nhour=12;}
-  else if(nhour<12){ap=" AM";}
-  else if(nhour==12){ap=" PM";}
-  else if(nhour>12){ap=" PM";nhour-=12;}
-
-  if(nmin<=9) nmin="0"+nmin;
-
-  document.getElementById('clockbox').innerHTML=""+tday[nday]+", "+tmonth[nmonth]+" "+ndate+" "+nhour+":"+nmin+ap+"";
-}
-
-window.onload=function(){
-  GetClock();
-  setInterval(GetClock,1000);
-}
-</script>
 
 <style>
     body {
@@ -49,7 +7,7 @@ window.onload=function(){
     </style>
     
     
-    <script language="javascript">
+    <script language="javascript"><!--
     function openCalculator(id)
     {
     
@@ -103,14 +61,14 @@ window.onload=function(){
       }
     }
     var cps = {};
-    </script>
+    --></script>
     
     
     
     
     <h3>Select Plan and Make a Deposit</h3>
     <br>
-    <form method="POST" name="spendform" action="/deposit"><input type="hidden" name="form_id" value="15991274917387"><input type="hidden" name="form_token" value="67c19e1a295e634ff112d9977805e046">
+    <form method=post name="spendform"><input type="hidden" name="form_id" value="15995757074701"><input type="hidden" name="form_token" value="36424af95fdc3d9807a28f492b3548f9">
     <input type=hidden name=a value=deposit>
        Select a plan:<br>
     
@@ -268,7 +226,5 @@ window.onload=function(){
         <div class="solid"> <a href="#" class="solid1"></a> <a href="#" class="solid2"></a> <a href="#" class="solid3"></a> <a href="#" class="solid4"></a> <a href="#" class="solid5"></a> <a href="#" class="solid6"></a> <a href="#" class="solid7"></a> <a href="#" class="solid8"></a> </div>
       </div>
     </div>
-
-
 
 <%- include("../partials/user/footer") %>

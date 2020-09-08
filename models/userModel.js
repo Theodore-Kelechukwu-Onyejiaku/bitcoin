@@ -15,7 +15,7 @@ const userSchema = new Schema({
     dogecoin: {type: String},
     ethereum: {type: String},
     bitcoinCash: {type: String},
-    dash: {type: String},  
+    dash: {type: String},
 })
 
 module.exports = mongoose.model("User", userSchema);

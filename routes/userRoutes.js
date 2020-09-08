@@ -11,18 +11,18 @@ function verify(req, res, next) {
       jwt.verify(token, process.env.TOKEN_SECRET, function(err, token_data) {
         if (err) {
             console.log("YOu must login to view this page")
-           return res.status(403).render('user/login', {message: "Please you must login to view this page"});
+           return res.status(403).render('user/login', {error: "Please you must login to view this page"});
         } else {
           req.user_data = token_data;
           next();
         }
       });
     } else {
-        return res.status(403).render('user/login', {message: "Please you must login to view this page"});
+        return res.status(403).render('user/login', {error: "Please you must login to view this page!!!"});
     }
   }
 
-router.get("/account", userController.account_get);
+router.get("/account", verify, userController.account_get);
 router.get("/referral", userController.referral_get);
 router.get("/security", userController.security_get);
 router.get("/settings", userController.settings_get);
@@ -39,5 +39,12 @@ router.get("/paid", userController.paid_get)
 
 
 
+/**
+ *  POST REQUESTS
+ */
+
+router.post("/deposit", userController.deposit_post);
+router.post("/register", userController.register);
+router.post("/login", userController.login_post)
 
 module.exports = router;

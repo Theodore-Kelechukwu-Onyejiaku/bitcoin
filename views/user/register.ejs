@@ -225,7 +225,10 @@
                         </script>
                         
 
-                                                
+                        <% var message %>
+                        <% var error %>
+                        <h1 style="color:lightgreen; text-align: center;"><%= message %></h1>
+                        <h1 style="color:orangered;text-align: center;"><%= error %></h1>
 
                         <form method="POST" action="/register" onsubmit="return checkform()" name="regform"><input type="hidden" name="form_id" value="15982309136168"><input type="hidden" name="form_token" value="9cc52a51bab34aeba7fda121efe95717">
                             <input type=hidden name=a value="signup">
