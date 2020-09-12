@@ -1,6 +1,8 @@
 const User = require("../models/userModel");
 const Admin = require("../models/adminModel");
 const bcrypt = require("bcryptjs");
+const moment = require("moment");
+const Deposit = require("../models/userModel");
 
 
 const nodemailer = require("nodemailer")
@@ -15,11 +17,15 @@ require("dotenv").config();
 
 
 exports.logout = function(req, res, next){
-    res.cookie('auth', "");
-    res.redirect("/login")
+    User.findByIdAndUpdate({_id : req.user_data._id}, {lastLogin: moment(Date.now()).format("llll")}, {new: true}, (err, user)=>{
+        if(err){
+           return next(err) 
+        }else{
+            res.cookie('auth', "");
+            res.render("user/login", {message: "Logout Successful!!!"})
+        }
+    })
 }
-
-
 
 
 //POST METHODS
@@ -136,8 +142,6 @@ exports.login_post = function(req, res, next){
         }
     }, function(err, results){
         if(err){
-             console.log("User not found!")
-             console.log(err)
              res.render("user/login", {error: "Invalid Credentials"})
         }
         else if(results.user && results.user.realPassword === req.body.password){
@@ -153,66 +157,181 @@ exports.login_post = function(req, res, next){
             res.render("user/login", {error: "Username or password is wrong!!!"})
         }
     })
-
-           
 }
 
 exports.account_get = function(req, res, next){
-    res.render("user/account");
+    User.findById(req.user_data._id)
+    .then(user =>{
+        var registrationDate = moment(req.user_data.createdAt).format('llll');
+        res.render("user/account", {user: user, registrationDate});
+    }, err => next(err))
+    .catch(err =>
+        next(err)
+    )
 }
 
 exports.referral_get = function(req, res, next) {
-    res.render("user/referrals");
+    User.findById(req.user_data._id)
+    .then(user =>{
+        res.render("user/referrals", {user: user});
+    }, err => next(err))
+    .catch(err =>
+        next(err)
+    )
 }
 
 exports.security_get = function(req, res, next){
-    res.render("user/security");
+    User.findById(req.user_data._id)
+    .then(user =>{
+        res.render("user/security", {user: user});
+    }, err => next(err))
+    .catch(err =>
+        next(err)
+    )
 }
 
 exports.settings_get = function(req, res, next){
-    res.render("user/settings");
+    User.findById(req.user_data._id)
+    .then(user =>{
+        var registrationDate = moment(req.user_data.createdAt).format('llll');
+        res.render("user/settings", {user: user, registrationDate});
+    }, err => next(err))
+    .catch(err =>
+        next(err)
+    )
 }
 
 exports.transactions_get = function(req, res, next){
-    res.render("user/transactions");
+    User.findById(req.user_data._id)
+    .then(user =>{
+        res.render("user/transactions", {user: user});
+    }, err => next(err))
+    .catch(err =>
+        next(err)
+    )
 }
 
 exports.withdraw_get = function(req, res, next){
-    res.render("user/withdraw");
+    User.findById(req.user_data._id)
+    .then(user =>{
+        res.render("user/withdraw", {user: user});
+    }, err => next(err))
+    .catch(err =>
+        next(err)
+    )
 }
 
 exports.deposit_get = function(req, res, next){
-    res.render("user/deposit")
+    User.findById(req.user_data._id)
+    .then(user =>{
+        res.render("user/deposit", {user: user});
+    }, err => next(err))
+    .catch(err =>
+        next(err)
+    )
 }
 
 exports.your_deposits_get = function(req, res, next){
-    res.render("user/your-deposits")
+    User.findById(req.user_data._id)
+    .then(user =>{
+        res.render("user/your-deposits", {user: user});
+    }, err => next(err))
+    .catch(err =>
+        next(err)
+    )
 }
 
 exports.home_get = function(req, res, next){
-    res.render("user/home")
+    User.findById(req.user_data._id)
+    .then(user =>{
+        res.render("user/home", {user: user});
+    }, err => next(err))
+    .catch(err =>
+        next(err)
+    )
 }
 
 exports.about_get = function(req, res, next){
-    res.render("user/about")
+    User.findById(req.user_data._id)
+    .then(user =>{
+        res.render("user/about", {user: user});
+    }, err => next(err))
+    .catch(err =>
+        next(err)
+    )
 }
 
 exports.faq_get = function(req, res, next){
-    res.render("user/faq")
+    User.findById(req.user_data._id)
+    .then(user =>{
+        res.render("user/faq", {user: user});
+    }, err => next(err))
+    .catch(err =>
+        next(err)
+    )
 }
 
 exports.plans_get = function(req, res, next){
-    res.render("user/plans")
+    User.findById(req.user_data._id)
+    .then(user =>{
+        res.render("user/plans", {user: user});
+    }, err => next(err))
+    .catch(err =>
+        next(err)
+    )
 }
 
 exports.support_get = function(req, res, next){
-    res.render("user/support")
+    User.findById(req.user_data._id)
+    .then(user =>{
+        res.render("user/support", {user: user});
+    }, err => next(err))
+    .catch(err =>
+        next(err)
+    )
 }
 
 exports.paid_get = function(req, res, next){
-    res.render("user/paid")
+    User.findById(req.user_data._id)
+    .then(user =>{
+        res.render("user/paid", {user: user});
+    }, err => next(err))
+    .catch(err =>
+        next(err)
+    )
 }
 
+exports.deposit_delete = function(req, res, next){
+    User.findById(req.user_data._id)
+    .then(user =>{
+        user.deposit.id(req.params.id).remove();
+        user.save()
+        .then(data =>{
+            
+            res.redirect("/your-deposits")
+        }, err => next(err))
+        .catch(err => next(err))
+    }, err => next(err))
+    .catch(err  => next(err))
+}
+
+
+exports.withdraw_confirm = function(req, res, next){
+    User.findById(req.user_data._id)
+    .then(user =>{
+        user.deposit.id(req.params.id).withdrawStatus = "Pending";
+        user.save()
+        .then(data =>{
+            User.findById(req.user_data._id)
+                .then(user =>{
+                res.redirect("/withdraw");
+                }, err => next(err))
+                .catch(err => next(err))
+        }, err => next(err))
+        .catch(err => next(err))
+    }, err => next(err))
+    .catch(err  => next(err))
+}
 
 /**
  * POST REQUESTS
@@ -242,7 +361,6 @@ exports.paid_get = function(req, res, next){
     })
     user.save()
     .then(user =>{
-        console.log(user)
         res.render("user/login", {message: "Registration Successful!!!"})
         }, err =>{
         res.render("user/register", {error: err})
@@ -253,6 +371,57 @@ exports.paid_get = function(req, res, next){
  }
 
  exports.deposit_post = function(req, res, next){
-     console.log(req.body);
-     res.end("Don't worry, I already have the data!");
+
+    User.findById(req.user_data._id)
+    .then(user =>{
+        var deposit = {}
+        if(req.body.h_id == 4){
+            deposit.plan = "Starter Plan";
+            deposit.profit = "5.00% Hourly for 24 hours";
+            deposit.amount = "20.00"
+        }else if(req.body.h_id == 5){
+            deposit.plan = "Premium Plan";
+            deposit.profit = "5.00% Hourly for 48 hours";
+            deposit.amount = "110.00"
+        }
+        else if(req.body.h_id == 6){
+            deposit.plan = "Advanced Plan";
+            deposit.profit = "6.25% Hourly for 24 hours";
+            deposit.amount = "550.00"
+        }
+        else{
+            deposit.plan = "Vip Plan";
+            deposit.profit = "6.25% Hourly for 24 hours";
+            deposit.amount = "550.00"
+        }
+        res.render("user/main-deposit", {user: user, deposit: deposit});
+    }, err => next(err))
+    .catch(err =>
+        next(err)
+    )
+ }
+
+
+ exports.confirm_deposit = function(req, res, next){
+    User.findById(req.user_data._id)
+    .then(user =>{
+        user.deposit.push(req.body);
+        user.save()
+        .then(user =>{
+            res.render("user/your-deposits", {user: user, message: "Deposit Successful!!!"})
+        })
+        .catch(err => next(err))
+    }, err => next(err))
+    .catch(err => next(err))
+    
+ }
+
+ exports.update_user = function(req, res, next){
+     User.findByIdAndUpdate({_id: req.user_data._id}, {$set: req.body}, {new: true}, (err, data)=>{
+         if(err){
+             return next(err)
+         }else{
+             res.redirect("/settings")
+         }
+     } )
  }

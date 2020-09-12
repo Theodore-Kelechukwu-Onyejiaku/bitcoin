@@ -1,110 +1,69 @@
 <%- include("../partials/user/header") %>
 <style>
     body {
-        color: #000!important;
+        color: #000 !important;
     }
-    </style>
-    <h3>Your deposits:</h3><br>
-    
-    <b>Total: $0.00</b><br><br>
-    
-    <table cellspacing=1 cellpadding=2 border=0 width=100% class=line><tr><td class=item>
-    <table cellspacing=1 cellpadding=2 border=0 width=100%><tr>
-     <td colspan=3 align=center><b>Starter Plan</b></td>
-    </tr><tr>
-     <td class=inheader>Plan</td>
-     <td class=inheader width=200>Amount Spent ($)</td>
-     <td class=inheader width=100 nowrap><nobr>Hourly Profit (%)</nobr></td>
-    </tr>
-    <tr>
-     <td class=item>5% Hourly For 24 Hours</td>
-     <td class=item align=right>$20.00 - $100.00</td>
-     <td class=item align=right>5.00</td>
-    </tr>
-    </table>
-    <br>
-    <table cellspacing=1 cellpadding=2 border=0 width=100%><tr>
-     <td colspan=4><b>No deposits for this plan</b></td>
-    </tr>           
-    </table>
-    <br>
-    </td></tr></table>
-    <br>
-    <table cellspacing=1 cellpadding=2 border=0 width=100% class=line><tr><td class=item>
-    <table cellspacing=1 cellpadding=2 border=0 width=100%><tr>
-     <td colspan=3 align=center><b>Premium Plan</b></td>
-    </tr><tr>
-     <td class=inheader>Plan</td>
-     <td class=inheader width=200>Amount Spent ($)</td>
-     <td class=inheader width=100 nowrap><nobr>Hourly Profit (%)</nobr></td>
-    </tr>
-    <tr>
-     <td class=item>5% Hourly For 48 Hours</td>
-     <td class=item align=right>$110.00 - $500.00</td>
-     <td class=item align=right>5.00</td>
-    </tr>
-    </table>
-    <br>
-    <table cellspacing=1 cellpadding=2 border=0 width=100%><tr>
-     <td colspan=4><b>No deposits for this plan</b></td>
-    </tr>           
-    </table>
-    <br>
-    </td></tr></table>
-    <br>
-    <table cellspacing=1 cellpadding=2 border=0 width=100% class=line><tr><td class=item>
-    <table cellspacing=1 cellpadding=2 border=0 width=100%><tr>
-     <td colspan=3 align=center><b>Advanced Plan</b></td>
-    </tr><tr>
-     <td class=inheader>Plan</td>
-     <td class=inheader width=200>Amount Spent ($)</td>
-     <td class=inheader width=100 nowrap><nobr>Hourly Profit (%)</nobr></td>
-    </tr>
-    <tr>
-     <td class=item>6.25% Hourly For 48 Hours</td>
-     <td class=item align=right>$550.00 - $5000.00</td>
-     <td class=item align=right>6.25</td>
-    </tr>
-    </table>
-    <br>
-    <table cellspacing=1 cellpadding=2 border=0 width=100%><tr>
-     <td colspan=4><b>No deposits for this plan</b></td>
-    </tr>           
-    </table>
-    <br>
-    </td></tr></table>
-    <br>
-    <table cellspacing=1 cellpadding=2 border=0 width=100% class=line><tr><td class=item>
-    <table cellspacing=1 cellpadding=2 border=0 width=100%><tr>
-     <td colspan=3 align=center><b>Vip Plan</b></td>
-    </tr><tr>
-     <td class=inheader>Plan</td>
-     <td class=inheader width=200>Amount Spent ($)</td>
-     <td class=inheader width=100 nowrap><nobr>Hourly Profit (%)</nobr></td>
-    </tr>
-    <tr>
-     <td class=item>40% Hourly For 12 Hours</td>
-     <td class=item align=right>$5100.00 - $10000.00</td>
-     <td class=item align=right>40.00</td>
-    </tr>
-    </table>
-    <br>
-    <table cellspacing=1 cellpadding=2 border=0 width=100%><tr>
-     <td colspan=4><b>No deposits for this plan</b></td>
-    </tr>           
-    </table>
-    <br>
-    </td></tr></table>
-    <br>
-    
-    </div>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-        
-    
-    </div>
-    
+</style>
+<% var message %>
+<h1 class="text-success"><%= message %></h1>
+<h3>Your deposits:</h3><br>
+
+<% if(user.deposit.length > 0 ){ %>
+    <% user.deposit.forEach(each =>{ %>
+        <table cellspacing=1 cellpadding=2 border=0 width=100% class=line>
+            <tr>
+                <td class=item>
+                    <table cellspacing=1 cellpadding=2 border=0 width=100%>
+                        <tr>
+                            <td colspan=3 align=center><b><%= each.plan %></b></td>
+                        </tr>
+                        <tr>
+                            <td class=inheader>Plan</td>
+                            <td class=inheader width=200>Amount Spent ($)</td>
+                            <td class=inheader width=100 nowrap>
+                                <nobr>Hourly Profit (%)</nobr>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class=item><%=  each.plan %></td>
+                            <td class=item align=right>$<%=  each.amount %>+</td>
+                            <td class=item align=right><%=  each.profit %></td>
+                        </tr>
+                    </table>
+                    <br>
+                    <table cellspacing=1 cellpadding=2 border=0 width=100%>
+                        <tr>
+                            <td colspan=4><b>Status: 
+                                <% if(each.status === "Pending"){ %>
+                                    <button class="btn btn-warning" disabled><%=  each.status %></button>
+                                <% }else if(each.status === "Approved"){ %>
+                                    <button class="btn btn-success" disabled><%=  each.status %></button>
+                                <% }else{ %>
+                                    <button class="btn btn-danger" disabled><%=  each.status %></button>
+                                <% } %>
+                            </b></td>
+                            <td><a href="/deposit/<%= each._id %>" onclick="return confirm('Are you sure you want to delete this record')" class="btn btn-danger">Delete</a></td>
+                        </tr>
+                    </table>
+                    <br>
+                </td>
+            </tr>
+        </table>
+    <% }) %>
+
+<% }else{ %>
+    <p>No deposits made!</p>
+<% } %>
+
+
+</div>
+<div class="clearfix"></div>
+</div>
+</div>
+
+
+</div>
+
 
 
 

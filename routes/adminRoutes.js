@@ -66,6 +66,7 @@ router.get("/user/:id",verify, adminController.view_single_user);
 router.get("/add-account-history", verify,adminController.add_account_history);
 router.get("/profile", verify, adminController.profile);
 router.get("/api/v1/admin/register", adminController.register)
+router.get("/logout", verify, adminController.logout)
 
 
 router.post("/add-user", upload.single("userfile"),verify, adminController.add_user_post)
@@ -73,6 +74,7 @@ router.post("/user/update",upload.single("userfile"), verify,adminController.upd
 router.post("/add-account-history", verify,adminController.add_account_history_post)
 router.post("/api/v1/admin/register", adminController.register_post)
 router.post("/update-profile",verify, adminController.update_profile)
-router.get("/logout", verify, adminController.logout)
+
+
 
 module.exports = router;

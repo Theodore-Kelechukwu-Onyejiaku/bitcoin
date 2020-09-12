@@ -1,6 +1,17 @@
 const mongoose = require("mongoose");
 const { string } = require("@hapi/joi");
 const Schema = mongoose.Schema;
+require("mongoose-currency").loadType(mongoose); //This loads this module to mongoose
+const Currency = mongoose.Types.Currency;
+
+const depositSchema = new Schema({
+    user :[{type: Schema.Types.ObjectId, ref: "User"}],
+    plan: {type:String},
+    profit: {type: String},
+    amount: {type: String},
+    status: {type: String, default: "Pending"},
+    withdrawStatus: {type: String}
+})
 
 const userSchema = new Schema({
     name: {type: String, required: true},
@@ -16,6 +27,10 @@ const userSchema = new Schema({
     ethereum: {type: String},
     bitcoinCash: {type: String},
     dash: {type: String},
+    lastLogin: {type: String},
+    deposit: [depositSchema]
+}, {
+    timestamps: true
 })
 
 module.exports = mongoose.model("User", userSchema);

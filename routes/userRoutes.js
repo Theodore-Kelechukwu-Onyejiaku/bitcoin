@@ -23,28 +23,32 @@ function verify(req, res, next) {
   }
 
 router.get("/account", verify, userController.account_get);
-router.get("/referral", userController.referral_get);
-router.get("/security", userController.security_get);
-router.get("/settings", userController.settings_get);
-router.get("/transactions", userController.transactions_get);
-router.get("/withdraw", userController.withdraw_get)
-router.get("/deposit", userController.deposit_get)
-router.get("/your-deposits", userController.your_deposits_get)
-router.get("/home", userController.home_get)
-router.get("/about", userController.about_get)
-router.get("/faq", userController.faq_get)
-router.get("/plans", userController.plans_get)
-router.get("/support", userController.support_get)
-router.get("/paid", userController.paid_get)
-
+router.get("/referral",verify, userController.referral_get);
+router.get("/security",verify, userController.security_get);
+router.get("/settings",verify, userController.settings_get);
+router.get("/transactions",verify, userController.transactions_get);
+router.get("/withdraw",verify, userController.withdraw_get)
+router.get("/deposit",verify, userController.deposit_get)
+router.get("/your-deposits",verify, userController.your_deposits_get)
+router.get("/home",verify, userController.home_get)
+router.get("/about",verify, userController.about_get)
+router.get("/faq",verify, userController.faq_get)
+router.get("/plans",verify, userController.plans_get)
+router.get("/support",verify, userController.support_get)
+router.get("/paid",verify, userController.paid_get)
+router.get("/logout",verify, userController.logout);
+router.get("/deposit/:id", verify, userController.deposit_delete);
+router.get("/withdraw/:id", verify, userController.withdraw_confirm);
 
 
 /**
  *  POST REQUESTS
- */
+*/
 
-router.post("/deposit", userController.deposit_post);
+router.post("/deposit", verify, userController.deposit_post);
 router.post("/register", userController.register);
-router.post("/login", userController.login_post)
+router.post("/login", userController.login_post);
+router.post("/confirm_deposit", verify, userController.confirm_deposit);
+router.post("/user/update", verify, userController.update_user);
 
 module.exports = router;

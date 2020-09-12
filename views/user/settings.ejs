@@ -52,38 +52,59 @@
       return true;
     }
     </script>
+    <% var message %>
+    <h3 class="text-succcess"><%= message %></h3>
     
-    
-    
-    <form action="index.php" method=post onsubmit="return checkform()" name=editform><input type="hidden" name="form_id" value="15991280715864"><input type="hidden" name="form_token" value="831aa8597b8b9970a7aa047673542344">
+    <form action="/user/update" method="POST" onsubmit="return checkform()" name=editform><input type="hidden" name="form_id" value="15991280715864"><input type="hidden" name="form_token" value="831aa8597b8b9970a7aa047673542344">
     <input type=hidden name=a value=edit_account>
     <input type=hidden name=action value=edit_account>
     <table cellspacing=0 cellpadding=2 border=0>
     <tr>
      <td>Account Name:</td>
-     <td>john_doe_123</td>
+     <td><%= user.username %></td>
     </tr><tr>
      <td>Registration date:</td>
-     <td>Jul-31-2020 02:05:43 PM</td>
+     <td><%= registrationDate %></td>
     </tr><tr>
      <td>Your Full Name:</td>
-     <td><input type=text name=fullname value='john doe' class=inpts size=30>
+     <td><input type=text name="name" value='<%= user.name %>' class=inpts size=30>
     </tr>
     
     <tr>
      <td>New Password:</td>
-     <td><input type=password name=password value="" class=inpts size=30></td>
-    </tr><tr>
-     <td>Retype Password:</td>
-     <td><input type=password name=password2 value="" class=inpts size=30></td>
+     <td><input type=password name="realPassword" value="" class=inpts size=30></td>
     </tr>
     <tr>
      <td>Your Bitcoin acc no:</td>
-     <td><input type=text class=inpts size=30 name="pay_account[48]" value=""></td>
+     <td><input type=text class=inpts size=30 name="bitcoin" value="<%= user.bitcoin %>"></td>
     </tr>
     <tr>
+      <td>Your Ethereum acc no:</td>
+      <td><input type=text class=inpts size=30 name="ethereum" value="<%= user.ethereum %>"></td>
+     </tr>
+     <tr>
+      <td>Your Litecoin acc no:</td>
+      <td><input type=text class=inpts size=30 name="litecoin" value="<%= user.litecoin %>"></td>
+     </tr>
+     <tr>
+      <td>Your Perfect Money acc no:</td>
+      <td><input type=text class=inpts size=30 name="perfectMoney" value="<%= user.perfectMoney %>"></td>
+     </tr>
+     <tr>
+      <td>Your Dogecoin acc no:</td>
+      <td><input type=text class=inpts size=30 name="dogecoin" value="<%= user.dogecoin %>"></td>
+     </tr>
+     <tr>
+      <td>Your Bitcoin Cash acc no:</td>
+      <td><input type=text class=inpts size=30 name="bitcoinCash" value="<%= user.bitcoinCash %>"></td>
+     </tr>
+     <tr>
+      <td>Your Dash acc no:</td>
+      <td><input type=text class=inpts size=30 name="dash" value="<%= user.dash %>"></td>
+     </tr>
+    <tr>
      <td>Your E-mail address:</td>
-     <td><input type=text name=email value='ddd@yahoo.com' class=inpts size=30></td>
+     <td><input type=text name="email" value='<%= user.email %>' class=inpts size=30></td>
     </tr>
     
     

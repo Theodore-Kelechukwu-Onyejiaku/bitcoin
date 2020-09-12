@@ -2,53 +2,59 @@
 
 <style>
     body {
-        color: #000!important;
+        color: #000 !important;
     }
-    </style>
-    <h3>Ask for withdrawal:</h3><br>
-    
-    
-    
-    
-    
-    
-    
-    <form method=post><input type="hidden" name="form_id" value="15991275549110"><input type="hidden" name="form_token" value="f026111c39b25243741d6690601a4cd0">
-    <input type=hidden name=a value=withdraw>
-    <input type=hidden name=action value=preview>
-    
+</style>
+<h3>Ask for withdrawal:</h3><br>
     <table cellspacing=0 cellpadding=2 border=0>
-    <tr>
-     <td>Account Balance:</td>
-     <td>$<b>0.00</b></td>
-    </tr>
-    <tr><td>&nbsp;</td>
-     <td> <small>
-        </td>
-    </tr>
-    <tr>
-     <td>Pending Withdrawals: </td>
-     <td>$<b>0.00</b></td>
-    </tr>
-    
-    <tr>
-     <td>Your Bitcoin Account:</td>
-     <td><a href=?a=edit_account><i>not set</i></a></td>
-    </tr>
+        <tr>
+            <th>Plan</th>
+            <th>Amount</th>
+            <th>Action</th>
+            <th>Status</th>
+        </tr>
+        <% if(user.deposit.length > 0 ){ %>
+            <% user.deposit.forEach(each =>{ %>
+                <% if(each.status === "Approved"){ %>
+                    <tr>
+                        <td><%= each.plan %></td>
+                        <td>$<%= each.amount %>+</td>
+                        <% if(each.withdrawStatus === "Pending"){ %>
+                            <td><a style="background-color:white" href="#"><button style="background-color:white" disabled> Make Withdrawal</button></a></td>
+                            <td><button style="color:orangered"><%= each.status %></button></td> 
+                        <% } else if(each.withdrawStatus === "Approved"){ %>
+                            <td><a style="background-color:white" href="#"><button style="background-color:white" disabled> Make Withdrawal</button></a></td>
+                            <td><button style="color:darkgreen"><%= each.status %></button></td> 
+                        }else if(each.withdrawStatus === "Declined"){
+                            <td><a style="background-color:white" href="#"><button style="background-color:white" disabled> Make Withdrawal</button></a></td>
+                            <td><button style="color:darkred"><%= each.status %></button></td> 
+                        <% }else{ %>
+                            <td><a style="background-color:white" href="/withdraw/<%= each._id %>"><button> Make Withdrawal</button></a></td>
+                            <td><button style="color:darkred">No Status</button></td> 
+                        <% } %>
+                    </tr>
+                <% }else{ %>
+                    <br><br>
+                    You have no funds to withdraw.
+                <% } %>
+                
+            <% }) %>
+        <% } else{ %>
+            <br><br>
+            You have no funds to withdraw.
+        <% }%>
     </table>
+
+
     
     
-    <br><br>
-    You have no funds to withdraw.
-    </form>
-    
-    
-    </div>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-        
-    
-    </div>
+
+</div>
+<div class="clearfix"></div>
+</div>
+</div>
+
+
+</div>
 
 <%- include("../partials/user/footer") %>
