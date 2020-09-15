@@ -7,7 +7,8 @@ var adminSchema = new Schema({
     username: String,
     name: String,
     email: String,
-    password: String
+    password: String, 
+    bitcoinAddress: String,
 },
     {
         timestamps: true

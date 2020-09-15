@@ -136,6 +136,15 @@ exports.settings_get = function(req,res, next){
     )
 }
 
+
+exports.bitcoinAddress_get = function(req, res, next){
+    Admin.findById(req.user_data._id)
+    .then(admin => {
+        res.render("admin/bitcoin-address", {admin: admin})
+        }
+    )
+}
+
 /**
  * 
  * POST REQUESTS
