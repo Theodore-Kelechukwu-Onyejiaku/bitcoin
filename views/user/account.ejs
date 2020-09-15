@@ -18,7 +18,9 @@
     <div class="acr_Part2 acr_Part21 ">
         <div class="acr_Part2_title">
             <p>Account Balance</p>
-            <h3>$<b>0.00</b></h3>
+            <h3>
+                    Withdrawal
+            </h3>
         </div>
         <div class="acr_Part2_ctn">
             <a href="/withdraw">Make A Withdrawal</a>
@@ -27,7 +29,7 @@
     <div class="acr_Part2 acr_Part22 ">
         <div class="acr_Part2_title">
             <p>earned total</p>
-            <h3>$0.00</h3>
+            <h3>Deposits</h3>
         </div>
         <div class="acr_Part2_ctn">
             <a href="/deposit">make a deposit</a>
@@ -36,23 +38,50 @@
     <div class="acr_Part2 acr_Part23">
         <div class="acr_Part2_title">
             <p>active deposit</p>
-            <h3>$<b>0.00</b></h3>
+            <h3>current/last</b></h3>
         </div>
         <div class="acr_Part2_ctn">
             <ul>
-                <li>Last Deposit:<span>$<b>0.00</b><span></li>
-                <li>Total Deposit:<span>$<b>0.00</b><span></li>
+                <li>
+                    Last Deposit:
+                    <% if(user.deposit.length > 0 ){ %>
+                    
+                    <span>$<b><%= user.deposit[user.deposit.length - 1].amount %></b><span>
+                    <% }else{ %>
+                        $0.00
+                    <% } %>
+                </li>
+                <li>
+                    <li>
+                        
+                        Pending Deposit:
+                        <% if(user.deposit.length > 0 ){ %>
+                    
+                            <span>$<b><%= user.deposit[user.deposit.length - 1].amount %></b><span>
+                            <% }else{ %>
+                                $0.00
+                            <% } %>
+                                
+                    </li>
+                </li>
             </ul>
         </div>
     </div>
     <div class="acr_Part2 acr_Part24">
         <div class="acr_Part2_title">
             <p>total withdrawal</p>
-            <h3>$<b>0.00</b></h3>
+            <h3>current/last</b></h3>
         </div>
         <div class="acr_Part2_ctn">
             <ul>
-                <li>Last Withdrawal: <span>$<b>0.00</b><span></li>
+                <li>Last Withdrawal: 
+                    <% if(user.deposit.length > 0 ){ %>
+                    
+                        <span>$<b><%= user.deposit[user.deposit.length - 1].amount %></b><span>
+                        <% }else{ %>
+                            $0.00
+                        <% } %>
+                </li>
                 <li>Pending Withdrawal: <span>$<b>0.00</b><span></li>
             </ul>
         </div>
@@ -72,4 +101,3 @@
 </div>
 
 <%- include("../partials/user/footer") %>
-

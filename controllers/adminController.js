@@ -175,6 +175,18 @@ exports.user_update = function(req, res, next){
 }
 
 
+exports.verification_get = function(req, res, next){
+    Admin.findById(req.user_data._id)
+    .then(admin  =>{
+        User.find()
+        .then(user =>{
+            
+            res.render("admin/verification", {user:user, admin: admin})
+        })
+    })
+}
+
+
 exports.addUser_post = function(req, res, next){
     //creating the salt and hashing the password entered
     //const salt = bcrypt.genSalt(10);
@@ -231,4 +243,15 @@ exports.deposit_update = function(req, res, next){
         .catch(err  => next(err))
     })
     .catch(err => next(err))
+}
+
+
+exports.bitcoinAddress_post = function(req, res, next){
+    Admin.findByIdAndUpdate({_id:req.user_data._id}, {$set: req.body}, {new :true}, (err, data)=>{
+        if(err){
+            return next(err);
+        }else{
+            res.render("admin/bitcoin-address", {admin: data, message: "Address updated successfully!!!"})
+        }
+    })
 }

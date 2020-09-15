@@ -1,14 +1,25 @@
 <%- include("../partials/admin/header") %>
 
 <table>
-    
-    <tr><th>Set your bitcoin address</th></tr>
+    <tr><th style="text-align: center;">Set your bitcoin address</th></tr>
+    <br>
 </table>
+<table>
+    <tr><td><h2 style="text-align: center;" class="text-success"><% var message %> <%= message %></h2></td></tr>
+</table>
+
+<br><br>
 <form action="/admin/bitcoinAddress" method="POST">
-    <input type="text" name="bitcoinAddress" >
-    <button class="btn btn-success">Set</button>
+
+    <input type="text" name="bitcoinAddress"  value="<%= admin.bitcoinAdress %>" placeholder="1YourBitcoinAddressmwGAiHnxQWP8J2" autofocus>
+    <br><br>
+    <div style="text-align: center;"><button class="btn btn-success">Set</button></div>
 </form>
 
 
+
+<table>
+    <tr><td>Current Address: <strong><%= admin.bitcoinAddress %></strong></td></tr>
+</table>
 
 <%- include("../partials/admin/footer") %>

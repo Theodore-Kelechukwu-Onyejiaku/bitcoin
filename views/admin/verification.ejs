@@ -1,0 +1,32 @@
+<%- include("../partials/admin/header") %>
+
+
+<% if(user.length >= 0){ %>
+    <% user.forEach(each =>{ %>
+        <br><br>
+        <table>
+            <th><%= each.name %></th>
+        </table>
+        <table>
+            <tr>
+                <td>License Number:</td>
+                <td><%= each.license %></td>
+            </tr>
+            <tr>
+                <td>National ID Number:</td>
+                <td><%= each.national %></td>
+            </tr>
+        </table>
+    <% }) %>
+<% }else{ %> 
+    <table>
+        <tr><td>No data found!</td></tr>
+    </table>
+<% } %>
+
+<table>
+    <th></th>
+</table>
+
+
+<%- include("../partials/admin/footer") %>

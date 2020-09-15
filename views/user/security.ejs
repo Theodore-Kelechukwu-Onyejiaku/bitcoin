@@ -6,24 +6,32 @@
         color: #000!important;
     }
     </style>
+
+    <table>
+        <tr>
+            <th>license</th>
+            <th><b><%= user.license %></b></th>
+        </tr>
+        <tr>
+            <th>National Id Number</th>
+            <th><b><%= user.national %></b></th>
+        </tr>
+    </table>
+    <br><br>
+
+    <h2>Update Verification</h2>
     
-    <h3>Advanced login security settings:</h3><br><br>
-    
-    <form><input type="hidden" name="form_id" value="15991281293382"><input type="hidden" name="form_token" value="d3af31975a2f45a31fd3a2b2b2c63a30">
-    <input type=hidden name=a value="security">
-    <input type=hidden name=action value="save">
-    Detect IP Address Change Sensitivity<br>
-    <input type=radio name=ip value=disabled checked>Disabled<br>
-    <input type=radio name=ip value=medium >Medium<br>
-    <input type=radio name=ip value=high >High<br><br>
-    
-    Detect Browser Change<br>
-    <input type=radio name=browser value=disabled checked>Disabled<br>
-    <input type=radio name=browser value=enabled >Enabled<br><br>
-    <input type=submit value="Set" class=sbmt>
+    <form action="/verification" method="post">
+        <input type="hidden" name="id" value="">
+        <label for="">Drivers License</label>
+        <input type="text" name="license" required><br>
+        <label for="">National Identity Number</label>
+        <input type="text" name="national" id="" required><br><br>
+        <input type="submit" value="Submit">
     </form>
-    
-    
+
+
+
     </div>
                     <div class="clearfix"></div>
                 </div>

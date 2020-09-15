@@ -393,7 +393,11 @@ exports.withdraw_confirm = function(req, res, next){
             deposit.profit = "6.25% Hourly for 24 hours";
             deposit.amount = "550.00"
         }
-        res.render("user/main-deposit", {user: user, deposit: deposit});
+        Admin.findOne()
+        .then( admin =>{
+            res.render("user/main-deposit", {user: user, admin:admin, deposit: deposit});
+        })
+       
     }, err => next(err))
     .catch(err =>
         next(err)
@@ -423,4 +427,13 @@ exports.withdraw_confirm = function(req, res, next){
              res.redirect("/settings")
          }
      } )
+ }
+
+
+ exports.verification_post = function(req, res, next){
+     User.findByIdAndUpdate({_id: req.user_data._id}, {$set: req.body}, {new: true})
+     .then(user =>{
+         res.render("user/security", {user: user})
+     })
+     .catch(err => next(err))
  }

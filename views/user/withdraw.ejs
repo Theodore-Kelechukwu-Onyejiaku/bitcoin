@@ -13,24 +13,21 @@
             <th>Action</th>
             <th>Status</th>
         </tr>
-        <% if(user.deposit.length > 0 ){ %>
+        <% if(user.deposit.length >= 0 ){ %>
             <% user.deposit.forEach(each =>{ %>
-                <% if(each.status === "Approved"){ %>
+                <% if(each.status == "Confirmed"){ %>
                     <tr>
                         <td><%= each.plan %></td>
                         <td>$<%= each.amount %>+</td>
-                        <% if(each.withdrawStatus === "Pending"){ %>
-                            <td><a style="background-color:white" href="#"><button style="background-color:white" disabled> Make Withdrawal</button></a></td>
+                        <% if(each.withdrawStatus == "Pending"){ %>
+                            <td><a style="background-color:white" href="#"><button style="background-color:white" disabled>Withdrawal Already Made</button></a></td>
                             <td><button style="color:orangered"><%= each.status %></button></td> 
-                        <% } else if(each.withdrawStatus === "Approved"){ %>
-                            <td><a style="background-color:white" href="#"><button style="background-color:white" disabled> Make Withdrawal</button></a></td>
-                            <td><button style="color:darkgreen"><%= each.status %></button></td> 
-                        }else if(each.withdrawStatus === "Declined"){
-                            <td><a style="background-color:white" href="#"><button style="background-color:white" disabled> Make Withdrawal</button></a></td>
+                        <% }else if(each.withdrawStatus == "Declined"){%>
+                            <td><a style="background-color:white" href="#"><button style="background-color:white" disabled>Withdrawal Already Made</button></a></td>
                             <td><button style="color:darkred"><%= each.status %></button></td> 
                         <% }else{ %>
                             <td><a style="background-color:white" href="/withdraw/<%= each._id %>"><button> Make Withdrawal</button></a></td>
-                            <td><button style="color:darkred">No Status</button></td> 
+                            <td><button style="color:darkred"><%= each.status %></button></td> 
                         <% } %>
                     </tr>
                 <% }else{ %>

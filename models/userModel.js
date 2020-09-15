@@ -13,6 +13,7 @@ const depositSchema = new Schema({
     withdrawStatus: {type: String}
 })
 
+
 const userSchema = new Schema({
     name: {type: String, required: true},
     username: {type: String, required: true, unique: true},
@@ -28,7 +29,9 @@ const userSchema = new Schema({
     bitcoinCash: {type: String},
     dash: {type: String},
     lastLogin: {type: String},
-    deposit: [depositSchema]
+    deposit: [depositSchema],
+    license: {type: String, default: "###"},
+    national: {type: String, defualt: "###"}
 }, {
     timestamps: true
 })
