@@ -40,17 +40,17 @@ function verify(req, res, next) {
     if (token) {
       jwt.verify(token, process.env.TOKEN_SECRET, function(err, token_data) {
         if (err) {
-            console.log("YOu must login to view this page")
-           return res.status(403).render('user/login', {message: "Please you must login to view this page"});
+           return res.status(403).render('user/login', {error: "Please you must login to view this page"});
         } else {
           req.user_data = token_data;
           next();
         }
       });
     } else {
-        return res.status(403).render('user/login', {message: "Please you must login to view this page"});
+        return res.status(403).render('user/login', {error: "Please you must login to view this page!!!"});
     }
-  }
+}
+
 
 
 
@@ -59,21 +59,31 @@ function verify(req, res, next) {
 router.get("/",verify, adminController.dashboard)
 
 
-router.get("/add-user", verify,adminController.add_user);
-router.get("/view-users",verify, adminController.view_users);
-router.get("/user/delete/:id", verify, adminController.delete_user);
-router.get("/user/:id",verify, adminController.view_single_user);
-router.get("/add-account-history", verify,adminController.add_account_history);
-router.get("/profile", verify, adminController.profile);
+// router.get("/add-user", verify,adminController.add_user);
+router.get("/users",verify, adminController.users_get);
+// router.get("/user/delete/:id", verify, adminController.delete_user);
+// router.get("/user/:id",verify, adminController.view_single_user);
+// router.get("/add-account-history", verify,adminController.add_account_history);
+// router.get("/profile", verify, adminController.profile);
 router.get("/api/v1/admin/register", adminController.register)
-router.get("/logout", verify, adminController.logout)
+router.get("/users/:id",verify, adminController.user_get);
+router.get("/user/delete/:id", verify, adminController.user_delete);
+router.get("/user/add", verify, adminController.addUser_get);
+router.get("/deposits", verify, adminController.deposits_get);
+router.get("/deposits/:id", verify, adminController.deposits_get_user)
+router.get("/deposits/delete/:id/:userId", verify, adminController.deposit_delete);
+router.get("/settings/", verify, adminController.settings_get)
+//router.get("/logout", verify, adminController.logout)
 
 
-router.post("/add-user", upload.single("userfile"),verify, adminController.add_user_post)
-router.post("/user/update",upload.single("userfile"), verify,adminController.update_user)
-router.post("/add-account-history", verify,adminController.add_account_history_post)
-router.post("/api/v1/admin/register", adminController.register_post)
-router.post("/update-profile",verify, adminController.update_profile)
+// router.post("/add-user", upload.single("userfile"),verify, adminController.add_user_post)
+// router.post("/user/update",upload.single("userfile"), verify,adminController.update_user)
+// router.post("/add-account-history", verify,adminController.add_account_history_post)
+router.post("/api/v1/admin/register", adminController.register_post);
+router.post("/user/update", verify, adminController.user_update);
+router.post("/user/add", verify, adminController.addUser_post);
+router.post("/deposits/update", verify, adminController.deposit_update);
+//router.post("/update-profile",verify, adminController.update_profile);
 
 
 

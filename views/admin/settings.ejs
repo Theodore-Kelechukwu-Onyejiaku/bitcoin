@@ -1,0 +1,29 @@
+<%- include("../partials/admin/header") %>
+<table>
+<tr>
+    <td>Account Name:</td>
+    <td><%= admin.username %></td>
+   </tr>
+   <tr>
+    <td>Your Full Name:</td>
+    <td><input type=text name="name" value='<%= admin.name %>' class=inpts size=30 disabled>
+   </tr>
+   
+   <tr>
+    <td>Password:</td>
+    <td><input type="text" name="password" value="<%= admin.password %>" class=inpts size=30 disabled></td>
+   </tr>
+   <tr>
+    <td>Email Address</td>
+    <td><input type=text class=inpts size=30 name="email" value="<%= admin.email %>" disabled></td>
+   </tr>
+
+</table>
+</form>
+
+</div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+   
+<%- include("../partials/admin/footer") %>

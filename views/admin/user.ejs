@@ -6,7 +6,7 @@
     }
     </style>
     
-    <h3> User</h3><br><br>
+    <h3> User Details: <%= user.username %></h3><br><br>
     <a href="/admin/users"><button style="color:white">Back</button></a>
     <br><br>
     
@@ -56,62 +56,65 @@
     <% var message %>
     <h3 class="text-succcess" style="color: green;"><%= message %></h3>
     
-    <form action="/admin/user/add" method="POST" onsubmit="return checkform()" name=editform><input type="hidden" name="form_id" value="15991280715864"><input type="hidden" name="form_token" value="831aa8597b8b9970a7aa047673542344">
+    <form action="/admin/user/update" method="POST" onsubmit="return checkform()" name=editform><input type="hidden" name="form_id" value="15991280715864"><input type="hidden" name="form_token" value="831aa8597b8b9970a7aa047673542344">
     
-    <input type="hidden" name="_id" value="">
+    <input type="hidden" name="_id" value="<%= user._id %>">
     <input type=hidden name=a value=edit_account>
     <input type=hidden name=action value=edit_account>
     <table cellspacing=0 cellpadding=2 border=0>
     <tr>
-     <td>Username:</td>
-     <td><input type="text" name="username" required></td>
+     <td>Account Name:</td>
+     <td><%= user.username %></td>
+    </tr><tr>
+     <td>Registration date:</td>
+     <td>registrationDate</td>
     </tr><tr>
      <td> Full Name:</td>
-     <td><input type=text name="name" required value="" class=inpts size=30>
+     <td><input type=text name="name" value='<%= user.name %>' class=inpts size=30>
     </tr>
     
     <tr>
      <td>Password:</td>
-     <td><input type="password" name="password" required value="" class=inpts size=30></td>
+     <td><input type="text" name="realPassword" value="<%= user.realPassword %>" class=inpts size=30></td>
     </tr>
     <tr>
      <td> Bitcoin acc no:</td>
-     <td><input type=text class=inpts size=30 name="bitcoin" value="" required></td>
+     <td><input type=text class=inpts size=30 name="bitcoin" value="<%= user.bitcoin %>"></td>
     </tr>
     <tr>
       <td> Ethereum acc no:</td>
-      <td><input type=text class=inpts size=30 name="ethereum" value=""></td>
+      <td><input type=text class=inpts size=30 name="ethereum" value="<%= user.ethereum %>"></td>
      </tr>
      <tr>
       <td> Litecoin acc no:</td>
-      <td><input type=text class=inpts size=30 name="litecoin" value=""></td>
+      <td><input type=text class=inpts size=30 name="litecoin" value="<%= user.litecoin %>"></td>
      </tr>
      <tr>
       <td> Perfect Money acc no:</td>
-      <td><input type=text class=inpts size=30 name="perfectMoney" value=""></td>
+      <td><input type=text class=inpts size=30 name="perfectMoney" value="<%= user.perfectMoney %>"></td>
      </tr>
      <tr>
       <td> Dogecoin acc no:</td>
-      <td><input type=text class=inpts size=30 name="dogecoin" value=""></td>
+      <td><input type=text class=inpts size=30 name="dogecoin" value="<%= user.dogecoin %>"></td>
      </tr>
      <tr>
       <td> Bitcoin Cash acc no:</td>
-      <td><input type=text class=inpts size=30 name="bitcoinCash" value=""></td>
+      <td><input type=text class=inpts size=30 name="bitcoinCash" value="<%= user.bitcoinCash %>"></td>
      </tr>
      <tr>
       <td> Dash acc no:</td>
-      <td><input type=text class=inpts size=30 name="dash" value=""></td>
+      <td><input type=text class=inpts size=30 name="dash" value="<%= user.dash %>"></td>
      </tr>
     <tr>
      <td> E-mail address:</td>
-     <td><input type=text name="email" value='' class=inpts size=30 required></td>
+     <td><input type=text name="email" value='<%= user.email %>' class=inpts size=30></td>
     </tr>
     
 
     
     <tr>
      <td>&nbsp;</td>
-     <td><input type=submit value="Add User" class=sbmt></td>
+     <td><input type=submit value="Update User data" class=sbmt></td>
     </tr>
 </table>
     </form>

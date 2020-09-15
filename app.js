@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 
 // //Importing routes
 const userRoutes = require("./routes/userRoutes")
-// const adminRoutes = require("./routes/adminRoutes")
+const adminRoutes = require("./routes/adminRoutes")
 
 const {validateRegistration, validateLogin} = require("./validation");
 const bcrypt = require("bcryptjs");
@@ -34,7 +34,7 @@ app.set('view engine', 'ejs');
 
 app.use(express.static("public"))
 app.use("/", userRoutes);
-// app.use("/admin", adminRoutes);
+app.use("/admin", adminRoutes);
 
 
 

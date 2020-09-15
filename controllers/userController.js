@@ -306,8 +306,7 @@ exports.deposit_delete = function(req, res, next){
     .then(user =>{
         user.deposit.id(req.params.id).remove();
         user.save()
-        .then(data =>{
-            
+        .then(data =>{ 
             res.redirect("/your-deposits")
         }, err => next(err))
         .catch(err => next(err))

@@ -2,22 +2,22 @@
     <head>
         <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
         <title>BX-Miners LTD</title>
-        <link href='styles/assets/custom.css' rel='stylesheet' type='text/css'>
-        <link href='styles/assets/hover.css' rel='stylesheet' type='text/css'>
-        <link href='styles/assets/animate.css' rel='stylesheet' type='text/css'>
+        <link href='/styles/assets/custom.css' rel='stylesheet' type='text/css'>
+        <link href='/styles/assets/hover.css' rel='stylesheet' type='text/css'>
+        <link href='/styles/assets/animate.css' rel='stylesheet' type='text/css'>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
-        <link rel="icon" href="styles/assets/images/favicon.png" type="image/png"/>
+        <link rel="icon" href="/styles/assets/images/favicon.png" type="image/png"/>
         <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700" rel="stylesheet">
-        <link href='styles/assets/bootstrap.min.css' rel='stylesheet' type='text/css'>
-        <link href='styles/assets/custom_back.css' rel='stylesheet' type='text/css'>
-        <script src='styles/assets/jquery.js' type='text/javascript'></script>
-        <script src="styles/assets/wow.js"></script>
-        <script src="styles/assets/wow.min.js"></script>
-        <script type="text/javascript" src="styles/assets/bootstrap.min.js"></script>
-        <script src='styles/assets/setting.js' type='text/javascript'></script>
-    
+        <link href='/styles/assets/bootstrap.min.css' rel='stylesheet' type='text/css'>
+        <link href='/styles/assets/custom_back.css' rel='stylesheet' type='text/css'>
+        <script src='/styles/assets/jquery.js' type='text/javascript'></script>
+        <script src="/styles/assets/wow.js"></script>
+        <script src="/styles/assets/wow.min.js"></script>
+        <script type="/text/javascript" src="/styles/assets/bootstrap.min.js"></script>
+        <script src='/styles/assets/setting.js' type='text/javascript'></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     
         <script type="text/javascript">
         //// Get the CryptoCurrency Information from the API
@@ -84,8 +84,7 @@
     
     
     </head>
-    
-    <div class="headerContainer">
+        <div class="headerContainer">
         <div class="headerInner fadeInLeft wow"> <a href="?a=home" id="logo"></a>
             <p>1 BTC: <span class="bitCoin"></span></p>
             <div class="hdRight">
@@ -100,10 +99,42 @@
                                 <li><a href="/support">SUPPORT</a></li>
                                 <li><a href="/paid">PAID</a></li>
                                                             <li><a href="/logout" class="login">logout</a></li>
-                                <li><a href="/account" class="signup">dashboard</a></li>						</ul>
+                                <li><a href="/admin" class="signup">dashboard</a></li>						</ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
+    <body>
+    
+        
+    
+    
+        
+        <div class="account_contentContainer">
+                <div class="account_contentInner">
+                    <div class="account_title">
+                        <div class="account_title_Left">
+                            <div class="admin"></div>
+                            <p>Hello, <span><%= admin.username %></span></p>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="account_ctn">
+                        <div class="account_ctn_Left">
+                            <ul>
+                                <li><a class="btn_acc hvr-sweep-to-right" href="/admin/users">Users</a></li>
+                                <li><a class="btn_dep hvr-sweep-to-right" href="/admin/deposits">All deposits</a></li>
+                                <!-- <li><a class="btn_withd hvr-sweep-to-right" href="/withdraw">withdraw</a></li> -->
+                                <!-- <li><a class="btn_yourdep hvr-sweep-to-right" href="/your-deposits">your deposits</a></li> -->
+                                <!-- <li><a class="btn_trans hvr-sweep-to-right" href="/transactions">transactions</a></li> -->
+                                <li><a class="btn_refer hvr-sweep-to-right" href="/referral">Bitcoin Address</a></li>
+                                <li><a class="btn_setting hvr-sweep-to-right" href="/admin/settings">settings</a></li>
+                                <li><a class="btn_securi hvr-sweep-to-right" href="/admin/verifications">Verifications</a></li>
+                            </ul>
+                        </div>
+                        <div class="account_ctn_Right">
+          

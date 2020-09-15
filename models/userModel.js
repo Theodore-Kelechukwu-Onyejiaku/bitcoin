@@ -33,4 +33,10 @@ const userSchema = new Schema({
     timestamps: true
 })
 
+
+//Adding virtuals
+userSchema.virtual("url").get(function(){
+    return "/admin/users/" + this.id;
+})
+
 module.exports = mongoose.model("User", userSchema);

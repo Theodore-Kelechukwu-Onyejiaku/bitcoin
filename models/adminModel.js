@@ -5,10 +5,13 @@ const Schema = mongoose.Schema;
 
 var adminSchema = new Schema({
     username: String,
-    firstname: String,
-    lastname: String,
+    name: String,
     email: String,
     password: String
-})
+},
+    {
+        timestamps: true
+    }
+)
 
 module.exports = mongoose.model("Admin", adminSchema);
