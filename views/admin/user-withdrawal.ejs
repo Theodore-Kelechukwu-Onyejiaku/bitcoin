@@ -8,7 +8,7 @@
 </style>
 <% var message %>
 <h1 class="text-success" style="text-align: center;"><%= message %></h1>
-<h3>Deposits: <%= user.username %></h3><br>
+<h3>Withdrawals: <%= user.username %></h3><br>
 
 <% if(user.deposit.length > 0 ){ %>
     <% user.deposit.forEach(each =>{ %>
@@ -35,21 +35,21 @@
                     <br>
                     <table cellspacing=1 cellpadding=2 border=0 width=100%>
                         <tr>
-                            <form action="/admin/deposits/update" method="post">
+                            <form action="/admin/withdrawals/update" method="post">
                                 <input type="hidden" name="id" value="<%= each._id %>">
                                 <input type="hidden" name="userId" value="<%= user._id %>">
                             <td colspan=4><b>Status: 
-                                <select name="status" id="">
-                                    <option value="<%= each.status %>"><%= each.status %></option>
+                                <select name="withdrawStatus" id="">
+                                    <option value="<%= each.withdrawStatus %>"><%= each.withdrawStatus %></option>
                                     <option value="Pending">Pending</option>
                                     <option value="Confirmed">Confirmed</option>
-                                    <option value="Approved">Approved</option>
+                                    <option value="Declined">Declined</option>
                                 </select>
                             </b></td>
 
                             <td>
                                 <button class="btn btn-warning">Update</button>
-                                <a href="/admin/deposits/delete/<%= each._id %>/<%= user._id %>" onclick="return confirm('Are you sure you want to delete this record')" class="btn btn-danger">Delete</a>
+                                
                             </td>
                             </form>
                         </tr>

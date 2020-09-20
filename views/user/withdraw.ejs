@@ -12,33 +12,59 @@
             <th>Amount</th>
             <th>Withdraw Status</th>
         </tr>
+        <% var counter = 0 %>
         <% if(user.deposit.length >= 0 ){ %>
-            <% user.deposit.forEach(each =>{ %>
+            <% user.deposit.forEach((each, index) =>{ %>
+                <% index++ %>
                 <% if(each.status == "Confirmed"){ %>
+                   
+                    
                     <tr>
                         <td><%= each.plan %></td>
                         <td>$<%= each.amount %>+</td>
                         
                             <!-- <td><a style="background-color:white" href="/withdraw/<%= each._id %>"><button> Make Withdrawal</button></a></td> -->
                             
-                        <td><button style="color:darkred"><%= each.status %></button></td> 
+                        <td><button style="color:darkred"><%= each.withdrawStatus %></button></td> 
                     </tr>
                     <tr>
-                        <td><button>Ask for withdrawal</button>
+                        <td  style="margin-bottom: 25px;">
+                            <% if(each.withdrawStatus == "Pending" || each.withdrawStatus == "Declined" ||  each.withdrawStatus == "Confirmed"){ %>
+                            <button  disabled>Request Already made!</button>
+                            <% }else{ %>
+                                <button class="mybtn" >Ask for withdrawal</button>
+                            <% } %>
+                            
+                            <div id="<%= index %>" style="display:none;transition: all 10s;margin-top:5px">
+                                <h4>Withdraw with Bitcoin Address</h4>
+                                <form action="/withdraw" method="POST">
+                                    <input type="hidden" name="<%= each.withdrawalMethod %>" value="bitcoinMethod">
+                                    <input type="hidden" name="_id" value="<%= each._id %>">
+                                    <input type="text" name="bitcoin" value="<%= user.bitcoin %>" placeholder="<%= user.bitcoin %>">
+                                    <button class="btn btn-sm btn-success">Proceed</button><br><br>
+                                </form>
+                                
+                                <h3>OR</h3><br>
+                                <h4>Withdraw with Bank Account</h4>
+                                <form action="/withdraw" method="POST">
+                                    <input type="hidden" name="_id" value="<%= each._id %>">
+                                    <input type="hidden" name="<%= each.withdrawalMethod %>" value="bitcoinMethod">
+                                    <input type="text" name="bankAccountNumber" value="<%= user.bankAccountNumber%>" placeholder="Account number --REQUIRED" required>
+                                    <input type="text" name="bankName" value="<%= user.bankName %>" placeholder="Bank name --REQUIRED" required>
+                                    <input type="text" name="routingNumber" value="<%= user.routingNumber %>" placeholder="Routing Number --REQUIRED" required>
+                                    <input type="text" name="swiftCode" value="<%= user.swiftCode %>" id="" placeholder="Swift Code --OPTIONAL">
+                                    <button class="btn btn-sm btn-success">Proceed</button>
+                                </form>
+                            </div>
+                            
                             <br><br>
-                            Withdraw with Bitcoin Address
-                            <input type="text" name="bitcoin" value="<%= each.bitcoin %>" placeholder="<%= each.bitcoin %>">
-                            <button class="btn btn-sm btn-success">Proceed</button><br><br>
-                            <h3>OR</h3><br>
-                            Withdraw with Bank
-                            <input type="text" name="bankAccountNumber" value="<%= each.bankAccountNumber%>" placeholder="Account number --REQUIRED" required>
-                            <input type="text" name="bankName" value="<%= each.bankName %>" placeholder="Bank name --REQUIRED" required>
-                            <input type="text" name="routingNumber" value="<%= each.routingNumber %>" placeholder="Routing Number --REQUIRED" required>
-                            <input type="text" name="swiftCode" value="<%= each.swiftCode %>" id="" placeholder="Swift Code --OPTIONAL">
-                            <button class="btn btn-sm btn-success">Proceed</button><br><br>
+                            
                             
                         </td>
+                        <p></p>
+                    <p></p>
                     </tr>
+                    <tr><td></td><td></td><td></td></tr>
 
                 <% }else{ %>
                     <br><br>
@@ -60,4 +86,24 @@
 
 </div>
 
+
 <%- include("../partials/user/footer") %>
+
+<script async>
+                                
+    var myBtn = document.querySelectorAll(".mybtn")
+    myBtn.forEach(each =>{
+            each.addEventListener("click", (e)=>{
+                console.log(e.target.nextElementSibling.innerHTML)
+                var divToDrop = e.target.nextElementSibling;
+                console.log(divToDrop)
+                if(divToDrop.style.display === "block"){
+                    divToDrop.style.display = "none"
+                }else{
+                    divToDrop.style.display = "block"
+                }
+            })
+    })
+    
+    
+</script>

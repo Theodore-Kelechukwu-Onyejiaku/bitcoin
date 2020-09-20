@@ -318,7 +318,20 @@ exports.deposit_delete = function(req, res, next){
 exports.withdraw_confirm = function(req, res, next){
     User.findById(req.user_data._id)
     .then(user =>{
-        user.deposit.id(req.params.id).withdrawStatus = "Pending";
+        if(req.body.bitcoin){
+            user.bitcoin = req.body.bitcoin;
+        }
+        else{
+            user.bitcoin = user.bitcoin;
+        }
+        user.deposit.id(req.body._id).withdrawStatus = "Pending";
+        user.deposit.id(req.body._id).withdrawMethod = req.body.withdrawMethod;
+        
+
+        user.bankAccountNumber = req.body.bankAccountNumber;
+        user.routingNumber = req.body.routingNumber;
+        user.bankName = req.body.bankName;
+        user.swiftCode = req.body.swiftCode;
         user.save()
         .then(data =>{
             User.findById(req.user_data._id)

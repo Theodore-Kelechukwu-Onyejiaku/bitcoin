@@ -5,13 +5,12 @@ require("mongoose-currency").loadType(mongoose); //This loads this module to mon
 const Currency = mongoose.Types.Currency;
 
 const depositSchema = new Schema({
-    user :[{type: Schema.Types.ObjectId, ref: "User"}],
     plan: {type:String},
     profit: {type: String},
     amount: {type: String},
     status: {type: String, default: "Pending"},
     withdrawStatus: {type: String},
-    withdrawMethod: {type:String}
+    withdrawMethod: {type:String},
 })
 
 

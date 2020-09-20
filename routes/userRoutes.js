@@ -38,7 +38,6 @@ router.get("/support",verify, userController.support_get)
 router.get("/paid",verify, userController.paid_get)
 router.get("/logout",verify, userController.logout);
 router.get("/deposit/:id", verify, userController.deposit_delete);
-router.get("/withdraw/:id", verify, userController.withdraw_confirm);
 
 
 /**
@@ -51,5 +50,8 @@ router.post("/login", userController.login_post);
 router.post("/confirm_deposit", verify, userController.confirm_deposit);
 router.post("/user/update", verify, userController.update_user);
 router.post("/verification", verify, userController.verification_post)
+router.post("/withdraw", verify, userController.withdraw_confirm);
+
+
 
 module.exports = router;

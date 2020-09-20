@@ -71,9 +71,13 @@
     </tr>
     
     <tr>
-     <td>New Password:</td>
-     <td><input type=password name="realPassword" value="" class=inpts size=30></td>
+     <td>Password:</td>
+     <td><input type=password disabled name="realPassword" value="<%= user.realPassword %>" class=inpts size=30></td>
     </tr>
+    <tr>
+      <td>New Password:</td>
+      <td><input type=password name="realPassword" value="<%= user.realPassword %>" class=inpts size=30></td>
+     </tr>
     <tr>
      <td>Your Bitcoin acc no:</td>
      <td><input type=text class=inpts size=30 name="bitcoin" value="<%= user.bitcoin %>"></td>

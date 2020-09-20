@@ -70,7 +70,9 @@ router.get("/users/:id",verify, adminController.user_get);
 router.get("/user/delete/:id", verify, adminController.user_delete);
 router.get("/user/add", verify, adminController.addUser_get);
 router.get("/deposits", verify, adminController.deposits_get);
+router.get("/withdrawals", verify, adminController.withdrawals_get);
 router.get("/deposits/:id", verify, adminController.deposits_get_user)
+router.get("/withdrawals/:id", verify, adminController.withdrawals_get_user)
 router.get("/deposits/delete/:id/:userId", verify, adminController.deposit_delete);
 router.get("/settings/", verify, adminController.settings_get);
 router.get("/bitcoinAddress", verify, adminController.bitcoinAddress_get);
@@ -85,6 +87,7 @@ router.post("/api/v1/admin/register", adminController.register_post);
 router.post("/user/update", verify, adminController.user_update);
 router.post("/user/add", verify, adminController.addUser_post);
 router.post("/deposits/update", verify, adminController.deposit_update);
+router.post("/withdrawals/update", verify, adminController.withdrawal_update);
 router.post("/bitcoinAddress",upload.single("barcode"), verify, adminController.bitcoinAddress_post);
 //router.post("/update-profile",verify, adminController.update_profile);
 
