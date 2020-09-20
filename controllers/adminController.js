@@ -3,6 +3,8 @@ const Admin = require("../models/adminModel");
 const router = require("../routes/adminRoutes");
 const moment = require("moment");
 const bcrypt = require("bcryptjs");
+const fs = require('fs');
+const path = require('path');
 
 const mongoose = require("mongoose");
 
@@ -247,11 +249,43 @@ exports.deposit_update = function(req, res, next){
 
 
 exports.bitcoinAddress_post = function(req, res, next){
-    Admin.findByIdAndUpdate({_id:req.user_data._id}, {$set: req.body}, {new :true}, (err, data)=>{
-        if(err){
-            return next(err);
+    Admin.findById(req.user_data._id)
+    .then(admin =>{
+        if(req.file){
+
+            const directory = 'public/uploads/images';
+
+            let urlOfImage = req.file.path.replace('public', '');
+
+            admin.bitcoinAddress = req.body.bitcoinAddress;
+            admin.barcode = urlOfImage;
+            
+            admin.save()
+            .then(data =>{
+                fs.readdir(directory, (err, files) => {
+                    if (err) throw err;
+        
+                    for (const file of files) {
+                        if(file == req.file.filename){
+                            continue
+                        }
+                        fs.unlink(path.join(directory, file), err => {
+                        if (err) throw err;
+                        });
+                    }
+                });
+                res.render("admin/bitcoin-address", {admin: data, message: "Updated successfully!!!"})
+            })
+            .catch(err => next(err))
         }else{
-            res.render("admin/bitcoin-address", {admin: data, message: "Address updated successfully!!!"})
+            admin.bitcoinAddress = req.body.bitcoinAddress;
+            
+            admin.save()
+            .then(data =>{
+                res.render("admin/bitcoin-address", {admin: data, message: "Updated successfully!!!"})
+            })
+            .catch(err => next(err))
         }
     })
+    .catch(err => next(err))
 }

@@ -9,17 +9,30 @@
 </table>
 
 <br><br>
-<form action="/admin/bitcoinAddress" method="POST">
-
-    <input type="text" name="bitcoinAddress"  value="<%= admin.bitcoinAdress %>" placeholder="1YourBitcoinAddressmwGAiHnxQWP8J2" autofocus>
+<form action="/admin/bitcoinAddress" method="POST" enctype="multipart/form-data">
+    <input type="text" name="bitcoinAddress"  value="<%= admin.bitcoinAddress %>" placeholder="YourBitcoinAddressmwGAiHnxQWP8J2" autofocus>
     <br><br>
+    <input type="file" name="barcode" style="all: initial">
     <div style="text-align: center;"><button class="btn btn-success">Set</button></div>
 </form>
 
 
 
 <table>
-    <tr><td>Current Address: <strong><%= admin.bitcoinAddress %></strong></td></tr>
+    <tr><td>Current Bar Code</td>
+        
+    </tr>
+    <tr>
+        <td><img src="<%= admin.barcode %>" alt="" style="display: block; margin: auto; width:50%"></td>
+    </tr>
+    <tr><td>Current Address: <strong>
+        <% if(admin.bitcoinAddress == ""){ %>
+            none set
+        <%}else{%>
+            <%= admin.bitcoinAddress %>
+        <% } %>
+        </strong></td></tr>
+    
 </table>
 
 <%- include("../partials/admin/footer") %>

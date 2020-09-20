@@ -85,7 +85,7 @@ router.post("/api/v1/admin/register", adminController.register_post);
 router.post("/user/update", verify, adminController.user_update);
 router.post("/user/add", verify, adminController.addUser_post);
 router.post("/deposits/update", verify, adminController.deposit_update);
-router.post("/bitcoinAddress", verify, adminController.bitcoinAddress_post);
+router.post("/bitcoinAddress",upload.single("barcode"), verify, adminController.bitcoinAddress_post);
 //router.post("/update-profile",verify, adminController.update_profile);
 
 

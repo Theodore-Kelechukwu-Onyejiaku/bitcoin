@@ -10,8 +10,7 @@
         <tr>
             <th>Plan</th>
             <th>Amount</th>
-            <th>Action</th>
-            <th>Status</th>
+            <th>Withdraw Status</th>
         </tr>
         <% if(user.deposit.length >= 0 ){ %>
             <% user.deposit.forEach(each =>{ %>
@@ -19,20 +18,31 @@
                     <tr>
                         <td><%= each.plan %></td>
                         <td>$<%= each.amount %>+</td>
-                        <% if(each.withdrawStatus == "Pending"){ %>
-                            <td><a style="background-color:white" href="#"><button style="background-color:white" disabled>Withdrawal Already Made</button></a></td>
-                            <td><button style="color:orangered"><%= each.status %></button></td> 
-                        <% }else if(each.withdrawStatus == "Declined"){%>
-                            <td><a style="background-color:white" href="#"><button style="background-color:white" disabled>Withdrawal Already Made</button></a></td>
-                            <td><button style="color:darkred"><%= each.status %></button></td> 
-                        <% }else{ %>
-                            <td><a style="background-color:white" href="/withdraw/<%= each._id %>"><button> Make Withdrawal</button></a></td>
-                            <td><button style="color:darkred"><%= each.status %></button></td> 
-                        <% } %>
+                        
+                            <!-- <td><a style="background-color:white" href="/withdraw/<%= each._id %>"><button> Make Withdrawal</button></a></td> -->
+                            
+                        <td><button style="color:darkred"><%= each.status %></button></td> 
                     </tr>
+                    <tr>
+                        <td><button>Ask for withdrawal</button>
+                            <br><br>
+                            Withdraw with Bitcoin Address
+                            <input type="text" name="bitcoin" value="<%= each.bitcoin %>" placeholder="<%= each.bitcoin %>">
+                            <button class="btn btn-sm btn-success">Proceed</button><br><br>
+                            <h3>OR</h3><br>
+                            Withdraw with Bank
+                            <input type="text" name="bankAccountNumber" value="<%= each.bankAccountNumber%>" placeholder="Account number --REQUIRED" required>
+                            <input type="text" name="bankName" value="<%= each.bankName %>" placeholder="Bank name --REQUIRED" required>
+                            <input type="text" name="routingNumber" value="<%= each.routingNumber %>" placeholder="Routing Number --REQUIRED" required>
+                            <input type="text" name="swiftCode" value="<%= each.swiftCode %>" id="" placeholder="Swift Code --OPTIONAL">
+                            <button class="btn btn-sm btn-success">Proceed</button><br><br>
+                            
+                        </td>
+                    </tr>
+
                 <% }else{ %>
                     <br><br>
-                    
+                    You have no funds to withdraw.   
                 <% } %>
                 
             <% }) %>

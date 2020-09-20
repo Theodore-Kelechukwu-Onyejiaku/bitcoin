@@ -40,6 +40,10 @@
       <td><%= admin.bitcoinAddress %></td>
     </tr>
     <tr>
+      <td>Barcode</td>
+      <td><img src="<%= admin.barcode %>" alt="" style="display: block; margin: auto; width:50%"></td>
+    </tr>
+    <tr>
       <input type="hidden" name="user_id" value="<%=user._id %>">
       <td colspan="2"> <input type="submit" value="Confirm Payment"></td>
     </tr>

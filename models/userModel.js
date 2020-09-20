@@ -10,7 +10,8 @@ const depositSchema = new Schema({
     profit: {type: String},
     amount: {type: String},
     status: {type: String, default: "Pending"},
-    withdrawStatus: {type: String}
+    withdrawStatus: {type: String},
+    withdrawMethod: {type:String}
 })
 
 
@@ -31,7 +32,11 @@ const userSchema = new Schema({
     lastLogin: {type: String},
     deposit: [depositSchema],
     license: {type: String, default: "###"},
-    national: {type: String, defualt: "###"}
+    national: {type: String, defualt: "###"},
+    bankAccountNumber: {type: String},
+    routingNumber :{type: String},
+    bankName: {type: String},
+    swiftCode: {type: String}
 }, {
     timestamps: true
 })

@@ -9,6 +9,7 @@ var adminSchema = new Schema({
     email: String,
     password: String, 
     bitcoinAddress: String,
+    barcode: String
 },
     {
         timestamps: true
