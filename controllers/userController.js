@@ -3,6 +3,8 @@ const Admin = require("../models/adminModel");
 const bcrypt = require("bcryptjs");
 const moment = require("moment");
 const Deposit = require("../models/userModel");
+const fs = require('fs');
+const path = require('path');
 
 
 const nodemailer = require("nodemailer")
@@ -324,9 +326,10 @@ exports.withdraw_confirm = function(req, res, next){
         else{
             user.bitcoin = user.bitcoin;
         }
+        console.log(req.body.withdrawMethod)
         user.deposit.id(req.body._id).withdrawStatus = "Pending";
         user.deposit.id(req.body._id).withdrawMethod = req.body.withdrawMethod;
-        
+        user.lastWithDrawal = user.deposit.id(req.body._id).amount;
 
         user.bankAccountNumber = req.body.bankAccountNumber;
         user.routingNumber = req.body.routingNumber;
@@ -390,21 +393,25 @@ exports.withdraw_confirm = function(req, res, next){
         if(req.body.h_id == 4){
             deposit.plan = "Starter Plan";
             deposit.profit = "5.00% Hourly for 24 hours";
-            deposit.amount = "20.00"
+            deposit.amount = "100.00"
+            user.lastDeposit = "100.00"
         }else if(req.body.h_id == 5){
             deposit.plan = "Premium Plan";
             deposit.profit = "5.00% Hourly for 48 hours";
-            deposit.amount = "110.00"
+            deposit.amount = "500.00";
+            user.lastDeposit = "500.00"
         }
         else if(req.body.h_id == 6){
             deposit.plan = "Advanced Plan";
             deposit.profit = "6.25% Hourly for 24 hours";
-            deposit.amount = "550.00"
+            deposit.amount = "5000.00"
+            user.lastDeposit = "5000.00"
         }
         else{
             deposit.plan = "Vip Plan";
             deposit.profit = "6.25% Hourly for 24 hours";
-            deposit.amount = "550.00"
+            deposit.amount = "10000.00"
+            user.lastDeposit = "10000.00"
         }
         Admin.findOne()
         .then( admin =>{
@@ -443,10 +450,52 @@ exports.withdraw_confirm = function(req, res, next){
  }
 
 
- exports.verification_post = function(req, res, next){
-     User.findByIdAndUpdate({_id: req.user_data._id}, {$set: req.body}, {new: true})
-     .then(user =>{
-         res.render("user/security", {user: user})
-     })
-     .catch(err => next(err))
+ exports.ssn_post = function(req, res, next){
+    User.findById(req.user_data._id)
+    .then(user =>{
+        if(req.file){
+
+            const directory = 'public/uploads/images';
+
+            let urlOfImage = req.file.path.replace('public', '');
+
+            
+            user.ssn = urlOfImage;
+            
+            user.save()
+            .then(user =>{
+                
+                res.render("user/security", {user:user, message: "Updated successfully!!!"})
+            })
+            .catch(err => next(err))
+        }else{
+                res.render("user/security", {user:user, message: "No file chosen!"})
+        }
+    })
+    .catch(err => next(err))
  }
+
+ exports.other_post = function(req, res, next){
+    User.findById(req.user_data._id)
+    .then(user =>{
+        if(req.file){
+
+            const directory = 'public/uploads/images';
+
+            let urlOfImage = req.file.path.replace('public', '');
+
+            
+            user.other = urlOfImage;
+            
+            user.save()
+            .then(user =>{
+                
+                res.render("user/security", {user:user, message: "Updated successfully!!!"})
+            })
+            .catch(err => next(err))
+        }else{
+                res.render("user/security", {user:user, message: "No file chosen!"})
+        }
+    })
+    .catch(err => next(err))
+}

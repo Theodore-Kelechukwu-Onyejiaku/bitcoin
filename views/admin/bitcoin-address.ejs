@@ -10,12 +10,13 @@
 
 <br><br>
 <form action="/admin/bitcoinAddress" method="POST" enctype="multipart/form-data">
+    <label for="">Enter bitcoin address</label>
     <input type="text" name="bitcoinAddress"  value="<%= admin.bitcoinAddress %>" placeholder="YourBitcoinAddressmwGAiHnxQWP8J2" autofocus>
     <br><br>
+    <label for="">Choose barcode picture</label>
     <input type="file" name="barcode" style="all: initial">
     <div style="text-align: center;"><button class="btn btn-success">Set</button></div>
 </form>
-
 
 
 <table>

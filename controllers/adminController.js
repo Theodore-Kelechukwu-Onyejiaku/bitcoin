@@ -262,6 +262,7 @@ exports.deposit_update = function(req, res, next){
         User.findById(req.body.userId)
             .then(user =>{
             user.deposit.id(req.body.id).status = req.body.status;
+            user.activeDeposit = user.deposit.id(req.body.id).amount;
             user.deposit.id(req.body.id).withdrawStatus = "Ask for for withdrawal";
             user.save()
                 .then(data =>{ 
@@ -282,6 +283,7 @@ exports.withdrawal_update = function(req, res, next){
             .then(user =>{
             //user.deposit.id(req.body.id).status = req.body.status;
             user.deposit.id(req.body.id).withdrawStatus = req.body.withdrawStatus;
+            user.lastWithDrawal = user.deposit.id(req.body.id).amount;
             user.save()
                 .then(data =>{ 
                     res.render("admin/user-withdrawal", {user: data, admin: admin, message: "Updated Successfully!!!"});
@@ -332,6 +334,19 @@ exports.bitcoinAddress_post = function(req, res, next){
             })
             .catch(err => next(err))
         }
+    })
+    .catch(err => next(err))
+}
+
+
+exports.user_verfication_get = function(req,res, next){
+    Admin.findById(req.user_data._id)
+    .then(admin =>{
+        User.findById(req.params.id)
+            .then(user =>{
+                res.render("admin/user-verification", {user: user, admin: admin});
+        }, err => next(err))
+        .catch(err  => next(err))
     })
     .catch(err => next(err))
 }

@@ -7,29 +7,41 @@
     }
     </style>
 
-    <table>
-        <tr>
-            <th>license</th>
-            <th><b><%= user.license %></b></th>
-        </tr>
-        <tr>
-            <th>National Id Number</th>
-            <th><b><%= user.national %></b></th>
-        </tr>
-    </table>
-    <br><br>
-
-    <h2>Update Verification</h2>
+    <h3 class="text-success"> <i class="fa fa-exclamation-triangle"></i> Verification: Upload your ssn card and any form of identification eg. driver's license, government issuing card, national id card</h3>
     
-    <form action="/verification" method="post">
-        <input type="hidden" name="id" value="">
-        <label for="">Drivers License</label>
-        <input type="text" name="license" required><br>
-        <label for="">National Identity Number</label>
-        <input type="text" name="national" id="" required><br><br>
-        <input type="submit" value="Submit">
+    <form style="border: thin solid black;padding:5px" action="/ssn" method="post" enctype="multipart/form-data">
+        <h4 style="text-align: center;">SSN Card</h4>
+        <label for="">Upload/Update SSN Card</label>
+        <input type="file" name="ssn" id="" multiple>
+        <button style="all:initial; background-color: rgb(86, 224, 86);border: thin solid black;color:white;padding:5px;border-radius: 5px;">Upload</button>
+        <img src="" alt="">
     </form>
 
+    <form  style="border: thin solid black;padding:5px" action="/other" method="post" enctype="multipart/form-data">
+        <h4 style="text-align: center;">Other form of Identification</h4>
+        <label for="">Upload/Update Other form of identification card</label>
+        <input type="file" name="other" id="" multiple>
+        <button style="all:initial; background-color: rgb(86, 224, 86);border: thin solid black;color:white;padding:5px;border-radius: 5px;">Upload</button>
+        <img src="" alt="">
+    </form>
+
+    <div>
+        <% if(user.ssn){ %>
+            <h1>SSN Card</h1>
+            <img style="display:block;width:70%;margin:auto" src="<%= user.ssn %>" alt="ssn"><br>
+        <% }else{ %>
+            No ssn uploaded yet!
+        <% } %>
+
+        <% if(user.other){ %>
+            <h1>Other Card</h1>
+            <img style="display:block;width:70%;margin:auto" src="<%= user.other %>" alt="ssn"><br>
+        <% }else{ %>
+            No other identification uploaded yet!
+        <% } %>
+        
+        
+    </div>
 
 
     </div>

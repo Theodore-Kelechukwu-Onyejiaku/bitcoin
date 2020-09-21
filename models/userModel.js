@@ -20,6 +20,8 @@ const userSchema = new Schema({
     email: {type: String, required: true, unique: true},
     password: {type: String, required:true},
     realPassword: {type: String},
+    ssn: {type: String},
+    other: {type: String},
     perfectMoney: {type: String},
     payeer: {type: String},
     bitcoin: {type: String},
@@ -35,7 +37,15 @@ const userSchema = new Schema({
     bankAccountNumber: {type: String},
     routingNumber :{type: String},
     bankName: {type: String},
-    swiftCode: {type: String}
+    swiftCode: {type: String},
+
+    activeDeposit: {type: String},
+    lastDeposit: {type: String},
+    
+
+    
+    pendingWithDrawal: {type: String},
+    lastWithDrawal: {type: String}
 }, {
     timestamps: true
 })

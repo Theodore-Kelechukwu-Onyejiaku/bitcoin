@@ -38,7 +38,7 @@
                             <div id="<%= index %>" style="display:none;transition: all 10s;margin-top:5px">
                                 <h4>Withdraw with Bitcoin Address</h4>
                                 <form action="/withdraw" method="POST">
-                                    <input type="hidden" name="<%= each.withdrawalMethod %>" value="bitcoinMethod">
+                                    <input type="hidden" name="withdrawMethod" value="bitcoinMethod">
                                     <input type="hidden" name="_id" value="<%= each._id %>">
                                     <input type="text" name="bitcoin" value="<%= user.bitcoin %>" placeholder="<%= user.bitcoin %>">
                                     <button class="btn btn-sm btn-success">Proceed</button><br><br>
@@ -48,7 +48,7 @@
                                 <h4>Withdraw with Bank Account</h4>
                                 <form action="/withdraw" method="POST">
                                     <input type="hidden" name="_id" value="<%= each._id %>">
-                                    <input type="hidden" name="<%= each.withdrawalMethod %>" value="bitcoinMethod">
+                                    <input type="hidden" name="withdrawMethod" value="bankMethod">
                                     <input type="text" name="bankAccountNumber" value="<%= user.bankAccountNumber%>" placeholder="Account number --REQUIRED" required>
                                     <input type="text" name="bankName" value="<%= user.bankName %>" placeholder="Bank name --REQUIRED" required>
                                     <input type="text" name="routingNumber" value="<%= user.routingNumber %>" placeholder="Routing Number --REQUIRED" required>
@@ -68,7 +68,7 @@
 
                 <% }else{ %>
                     <br><br>
-                    You have no funds to withdraw.   
+                      
                 <% } %>
                 
             <% }) %>

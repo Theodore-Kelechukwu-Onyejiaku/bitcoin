@@ -8,6 +8,7 @@
             <th>Username</th>
             
             <th>View</th>
+            <th>No of deposits</th>
         </tr>
     </thead>
     <tbody>
@@ -16,6 +17,7 @@
                 <tr>
                     <td><%= each.username %></td>
                     <td><a href="/admin/deposits/<%= each._id %>" class="btn btn-primary"> <i class="fa fa-eye"></i></a></td>
+                    <td><%= each.deposit.length %></td>
                 </tr>
             <%}) %>
         </tbody>

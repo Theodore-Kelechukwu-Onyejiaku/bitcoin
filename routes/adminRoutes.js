@@ -76,7 +76,8 @@ router.get("/withdrawals/:id", verify, adminController.withdrawals_get_user)
 router.get("/deposits/delete/:id/:userId", verify, adminController.deposit_delete);
 router.get("/settings/", verify, adminController.settings_get);
 router.get("/bitcoinAddress", verify, adminController.bitcoinAddress_get);
-router.get("/verifications", verify, adminController.verification_get)
+router.get("/verifications", verify, adminController.verification_get);
+router.get("/verifications/:id", verify, adminController.user_verfication_get);
 //router.get("/logout", verify, adminController.logout)
 
 

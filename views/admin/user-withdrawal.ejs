@@ -8,10 +8,11 @@
 </style>
 <% var message %>
 <h1 class="text-success" style="text-align: center;"><%= message %></h1>
-<h3>Withdrawals: <%= user.username %></h3><br>
+<h3>Requested Withdrawals: <%= user.username %></h3><br>
 
 <% if(user.deposit.length > 0 ){ %>
     <% user.deposit.forEach(each =>{ %>
+        <% if(each.withdrawStatus == "Pending" || each.withdrawStatus == "Declined" ||  each.withdrawStatus == "Confirmed"){ %>
         <table cellspacing=1 cellpadding=2 border=0 width=100% class=line>
             <tr>
                 <td class=item>
@@ -25,6 +26,7 @@
                             <td class=inheader width=100 nowrap>
                                 <nobr>Hourly Profit (%)</nobr>
                             </td>
+                            
                         </tr>
                         <tr>
                             <td class=item><%=  each.plan %></td>
@@ -51,6 +53,17 @@
                                 <button class="btn btn-warning">Update</button>
                                 
                             </td>
+                            <tr><td>Withdrawal Method: <b><%= each.withdrawMethod %></b></td>
+                                <% if(each.withdrawMethod == "bitcoinMethod"){ %>
+                                    <td>address: <b><%= user.bitcoin %></b></td>
+                                <% }else{ %>
+                                    <td>Account Number: <b><%= user.bankAccountNumber %></b></td>
+                                    <td>Bank Name: <b><%= user.bankName %></b></td>
+                                    <td>Routing Number: <b><%= user.routingNumber %></b></td>
+                                    <td>Swift Code: <b><%= user.swiftCode %></b></td>
+                                <% } %>
+                            
+                            </tr>
                             </form>
                         </tr>
                     </table>
@@ -58,6 +71,7 @@
                 </td>
             </tr>
         </table>
+        <% } %>
     <% }) %>
 
 <% }else{ %>

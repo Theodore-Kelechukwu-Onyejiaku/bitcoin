@@ -12,13 +12,11 @@
     </thead>
     <tbody>
         <tbody>
-            <% user.forEach(each =>{%>
                 <tr>
-                    <td><%= each.username %></td>
-                    <td><a href="/admin/withdrawals/<%= each._id %>" class="btn btn-primary"> <i class="fa fa-eye"></i></a></td>
-                    <td><%= each.deposit.length %></td>
+                    <td><%= user.name %></td>
+                    <td><img src="" alt=""></td>
+                    <td><img src="" alt=""></td>
                 </tr>
-            <%}) %>
         </tbody>
     </tbody>
 </table>
