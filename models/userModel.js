@@ -39,13 +39,13 @@ const userSchema = new Schema({
     bankName: {type: String},
     swiftCode: {type: String},
 
-    activeDeposit: {type: String},
-    lastDeposit: {type: String},
+    activeDeposit: {type: String, default:"0"},
+    lastDeposit: {type: String, default: "0"},
     
 
     
-    pendingWithDrawal: {type: String},
-    lastWithDrawal: {type: String}
+    pendingWithDrawal: {type: String, default:"0"},
+    lastWithDrawal: {type: String, default:"0"},
 }, {
     timestamps: true
 })

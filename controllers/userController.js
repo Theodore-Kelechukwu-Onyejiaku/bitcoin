@@ -164,8 +164,26 @@ exports.login_post = function(req, res, next){
 exports.account_get = function(req, res, next){
     User.findById(req.user_data._id)
     .then(user =>{
+        if(user.deposit.length >= 0 ){ 
+            var total  = 0 
+            user.deposit.forEach((each, index) =>{ 
+                if(each.status == "Confirmed"){ 
+                    if(each.withdrawStatus == "Pending" || each.withdrawStatus == "Declined" ||  each.withdrawStatus == "Confirmed"){ 
+                        total = total + Number(each.amount )  
+                    }
+                }
+            }) 
+        }
+        if(user.deposit.length >= 0 ){ 
+            var totalDeposit  = 0 
+            user.deposit.forEach((each, index) =>{ 
+                if(each.status == "Confirmed"){ 
+                    totalDeposit = totalDeposit + Number(each.amount)
+                }
+            }) 
+        }
         var registrationDate = moment(req.user_data.createdAt).format('llll');
-        res.render("user/account", {user: user, registrationDate});
+        res.render("user/account", {user: user, total, totalDeposit, registrationDate});
     }, err => next(err))
     .catch(err =>
         next(err)
@@ -413,10 +431,14 @@ exports.withdraw_confirm = function(req, res, next){
             deposit.amount = "10000.00"
             user.lastDeposit = "10000.00"
         }
-        Admin.findOne()
-        .then( admin =>{
-            res.render("user/main-deposit", {user: user, admin:admin, deposit: deposit});
+        user.save()
+        .then(userSaved =>{
+            Admin.findOne()
+                .then( admin =>{
+                res.render("user/main-deposit", {user: userSaved, admin:admin, deposit: deposit});
+            })
         })
+        
        
     }, err => next(err))
     .catch(err =>

@@ -6,7 +6,7 @@
         <h3><%= user.username %></h3>
     </div>
     <div class="acr_Part1 acr_Part12">
-        <h4>Registration Date:</h4>
+        <h4>Registration Date:</h4
         <h3><%= registrationDate %></h3>
     </div>
     <div class="acr_Part1 acr_Part13">
@@ -37,52 +37,37 @@
     </div>
     <div class="acr_Part2 acr_Part23">
         <div class="acr_Part2_title">
-            <p>active deposit</p>
-            <h3>current/last</b></h3>
+            <p>ACTIVE DEPOSITS</p>
+            <h3><b>$<%= user.activeDeposit %>.00</b></h3>
         </div>
         <div class="acr_Part2_ctn">
             <ul>
                 <li>
                     Last Deposit:
-                    <% if(user.deposit.length > 0 ){ %>
-                    
-                    <span>$<b><%= user.deposit[user.deposit.length - 1].amount %></b><span>
-                    <% }else{ %>
-                        $0.00
-                    <% } %>
+                    <span><b>$<%= user.lastDeposit %>.00</b></span>
                 </li>
                 <li>
                     <li>
                         
-                        Pending Deposit:
-                        <% if(user.deposit.length > 0 ){ %>
-                    
-                            <span>$<b><%= user.deposit[user.deposit.length - 1].amount %></b><span>
-                            <% }else{ %>
-                                $0.00
-                            <% } %>
-                                
+                        Total Deposit:
+                        <span><b>$<%= totalDeposit %>.00</b></span>
                     </li>
                 </li>
             </ul>
         </div>
     </div>
     <div class="acr_Part2 acr_Part24">
+        <% var total %>
         <div class="acr_Part2_title">
-            <p>total withdrawal</p>
-            <h3>current/last</b></h3>
+            TOTAL WITHDRAWALS:
+            <h3><b>$<%= total %>.00</b></h3>
         </div>
         <div class="acr_Part2_ctn">
             <ul>
                 <li>Last Withdrawal: 
-                    <% if(user.deposit.length > 0 ){ %>
-                    
-                        <span>$<b><%= user.deposit[user.deposit.length - 1].amount %></b><span>
-                        <% }else{ %>
-                            $0.00
-                        <% } %>
+                    <span><b>$<%= user.lastWithDrawal %>,00</b></span>
                 </li>
-                <li>Pending Withdrawal: <span>$<b>0.00</b><span></li>
+                <li>Pending Withdrawal: <span>$<b><%= user.pendingWithDrawal %></b><span></li>
             </ul>
         </div>
     </div>
