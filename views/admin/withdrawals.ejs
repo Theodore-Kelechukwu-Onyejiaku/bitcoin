@@ -13,11 +13,16 @@
     <tbody>
         <tbody>
             <% user.forEach(each =>{%>
-                <tr>
-                    <td><%= each.username %></td>
-                    <td><a href="/admin/withdrawals/<%= each._id %>" class="btn btn-primary"> <i class="fa fa-eye"></i></a></td>
-                    <td><%= each.deposit.length %></td>
-                </tr>
+                <% each.deposit.forEach(deposit=>{ %>
+                    <% if(deposit.withdrawStatus == "Pending" || deposit.withdrawStatus == "Confirmed" || deposit.withdrawStatus == "Declined"){ %>
+                        <tr>
+                            <td><%= each.username %></td>
+                            <td><a href="/admin/withdrawals/<%= each._id %>" class="btn btn-primary"> <i class="fa fa-eye"></i></a></td>
+                            <td><%= each.deposit.length %></td>
+                        </tr>
+                    <% } %>
+                <% }) %>
+                
             <%}) %>
         </tbody>
     </tbody>

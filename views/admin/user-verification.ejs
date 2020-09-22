@@ -1,25 +1,39 @@
 <%- include("../partials/admin/header") %>
-<h3 style="color:black">Withdrawals</h3>
+<h3 style="color:black">User Verification</h3>
 
 <h3 style="color:green"><% var message %> <%= message %></h3>
-<table>
-    <thead>
-        <tr>
-            <th>Username</th>
-            
-            <th>View</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tbody>
-                <tr>
-                    <td><%= user.name %></td>
-                    <td><img src="" alt=""></td>
-                    <td><img src="" alt=""></td>
-                </tr>
-        </tbody>
-    </tbody>
-</table>
+
+    
+    
+<div>
+    <% if(user.ssn){ %>
+        <h1 style="all:inital;color:green">SSN Card</h1>
+        <img style="display:block;width:70%;margin:auto" src="<%= user.ssn %>" alt="ssn"><br>
+    <% }else{ %>
+        <h3 style="all:inital;color:green">No ssn uploaded yet!</h3>
+        
+    <% } %>
+
+    <% if(user.other){ %>
+        <h1 style="all:inital;color:green">Other Card</h1>
+        <img style="display:block;width:70%;margin:auto" src="<%= user.other %>" alt="ssn"><br>
+    <% }else{ %>
+        <h3 style="all:inital;color:green">No other identification uploaded yet!</h3>
+        
+    <% } %>
+    
+    
+</div>
+
+</div>
+<div class="clearfix"></div>
+</div>
+</div>
+
+
+</div>
+                    
+                
 
 
 <%- include("../partials/admin/footer") %> -->

@@ -209,7 +209,6 @@ exports.verification_get = function(req, res, next){
     .then(admin  =>{
         User.find()
         .then(user =>{
-            
             res.render("admin/verification", {user:user, admin: admin})
         })
     })
