@@ -56,6 +56,7 @@ function verify(req, res, next) {
 
 router.get("/account", verify, userController.account_get);
 router.get("/referral",verify, userController.referral_get);
+router.get("/referral/:userId/:username", userController.getReferral);
 router.get("/verification",verify, userController.security_get);
 router.get("/settings",verify, userController.settings_get);
 router.get("/transactions",verify, userController.transactions_get);
@@ -87,5 +88,6 @@ router.post("/user/update", verify, userController.update_user);
 router.post("/ssn",upload.single("ssn"), verify, userController.ssn_post)
 router.post("/other",upload.single("other"), verify, userController.other_post)
 router.post("/withdraw", verify, userController.withdraw_confirm);
+
 
 module.exports = router;

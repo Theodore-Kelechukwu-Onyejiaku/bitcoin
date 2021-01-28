@@ -38,6 +38,8 @@ const userSchema = new Schema({
     routingNumber :{type: String},
     bankName: {type: String},
     swiftCode: {type: String},
+    referral : {type: Number, default : 0},
+    referralCommision: {type: Number, default : 0},
 
     activeDeposit: {type: String, default:"0"},
     lastDeposit: {type: String, default: "0"},

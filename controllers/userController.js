@@ -373,6 +373,25 @@ exports.withdraw_confirm = function(req, res, next){
  
 
  exports.register =async function(req, res, next){
+
+    if(req.body.refCode){
+        console.log(req.body.refCode);
+
+        User.findById(req.body.refCode)
+        .then( user =>{
+            user.referral++;
+            user.referralCommision += 20;
+            user.save()
+            .then(doc =>{
+               
+            }, err => next(err))
+            .catch(err => next(err))
+        }, err => next(err))
+        .catch(err => {
+            next(err)
+        })
+    }
+
     //creating the salt and hashing the password entered
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(req.body.password, salt);
@@ -392,8 +411,10 @@ exports.withdraw_confirm = function(req, res, next){
         payeer: req.body.payeer,
         dash: req.body.dash,
     })
+    
     user.save()
     .then(user =>{
+        res.cookie('referralLink', user._id);
         res.render("user/login", {message: "Registration Successful!!!"})
         }, err =>{
         res.render("user/register", {error: err})
@@ -520,4 +541,13 @@ exports.withdraw_confirm = function(req, res, next){
         }
     })
     .catch(err => next(err))
+}
+
+
+exports.getReferral = (req, res, next) =>{
+    if(req.params.userId == req.cookies.referralLink){
+        res.end("You are not allowed to refer yourself");
+    }else{
+        res.render("user/referralRegister", {refCode: req.params.userId});
+    }
 }
